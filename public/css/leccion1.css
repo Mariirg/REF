@@ -1,0 +1,255 @@
+:root {
+  --main-color: #7e57c2;      /* Morado principal */
+  --accent-color: #b39ddb;    /* Morado suave */
+  --text-color: #333;
+  --bg-color: #f8f7fc;
+  --white: #fff;
+  --gray-light: #e0e0e0;
+}
+/* style1.css */
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Roboto', sans-serif;
+  background-color: #fefbff;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: #ffffff;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  font-size: 24px;
+  color: #6d3d9c;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.navbar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar a,
+.navbar button {
+  background: transparent;
+  border: none;
+  color: #6d3d9c;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar button:hover {
+  color: #995ac5;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-color);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #5e35b1;
+}
+
+
+.container {
+  max-width: 900px;
+  margin: 2.5rem auto;
+  padding: 13px 2.5rem;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(126, 87, 194, 0.06);
+}
+
+h1, h2, h3 {
+  color: #2c2c2c;
+  margin-bottom: 0.75rem;
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--main-color);
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+
+figure img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: #777;
+  font-style: italic;
+}
+
+.imagenes-leccion {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Hace que se acomoden una debajo de otra en móviles */
+  margin: 20px 0;
+}
+
+.imagenes-leccion figure {
+  flex: 1 1 45%; /* Que cada imagen tome máximo 45% del ancho */
+  text-align: center;
+}
+
+.imagenes-leccion img {
+  max-width: 70%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.practica {
+  background-color: #d9cee9;
+  padding: 1.5rem;
+  border-left: 6px solid var(--main-color);
+  border-radius: 8px;
+  color: #fff;
+  margin-top: 2rem;
+  box-shadow: 0 4px 12px rgba(193, 165, 241, 0.15);
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  background-color: #f9f4ff;
+  padding: 20px 40px;
+  text-align: center;
+  color: #6d3d9c;
+  font-size: 14px;
+  border-top: 1px solid #e9dfff;
+}
+
+.social-icons a {
+  margin: 0 0.5rem;
+  color: var(--main-color);
+  font-weight: 500;
+}
+
+.social-icons a:hover {
+  color: #c2b0e7;
+}
+
+/* Botón con estilo (opcional) */
+#showProfileBtn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--accent-color);
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+#showProfileBtn:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+
+#showProfileBtn{
+    background: transparent;
+    color: #333; /* Letra negra */
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 18px;
+    border: none; /* Sin bordes */
+    border-radius: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-size: 1.4rem;
+  
+  }
+  
+  #btnshowProfileBtn:hover {
+    color: var(--highlight-color);
+    text-shadow: 0 0 8px #7d3cff;
+  }
+  
+  #btnshowProfile:active {
+    color: var(--highlight-color);
+    text-shadow: 0 0 8px #7d3cff; 
+  }
+  #perfilSection {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(244, 230, 230);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+  
+  /* Estilo para el fondo oscuro */
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 500;
+    display: none; /* Inicialmente oculto */
+  }
+  
+  /* Para cuando se muestra el perfil */
+  #overlay.active,
+  #perfilSection.active {
+    display: block;
+  }
+  
+  #perfilSection h2 {
+    color: #6a5acd;
+  }
+  
+  #perfilSection .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  

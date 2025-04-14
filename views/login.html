@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión y registro</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../public/css/login.css">
+    <link rel="icon" href="../public/img/logo22.png" sizes="32x32" type="image/png">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Formulario de Inicio de Sesión -->
+        <div class="form-box login">
+            <form action="">
+                <h1>Inicio de sesión</h1>
+                <div class="input-box">
+                    <input type="text" name="NombreUsuario" placeholder="Nombre de usuario" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="contrasena" placeholder="Contraseña" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="forgot-link">
+                    <a href="#">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button type="submit" class="btn">Iniciar sesión</button>
+            </form>
+        </div>
+
+        <!-- Formulario de Registro -->
+        <div class="form-box register">
+            <form action="">
+                <h1>Crea una nueva cuenta</h1>
+                <div class="input-box">
+                    <input type="text" name="NombreUsuario" placeholder="Nombre de usuario" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="correo" placeholder="Correo electrónico" required>
+                    <i class='bx bxs-envelope'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="contrasena" placeholder="Contraseña" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <button type="submit" class="btn">Registro</button>
+            </form>
+        </div>
+
+        <!-- Panel de Alternar -->
+        <div class="toggle-box">
+            <div class="toggle-panel toggle-left">
+                <h1>¡Hola, bienvenido/a!</h1>
+                <p>¿No tienes una cuenta?</p>
+                <button class="btn register-btn">Regístrate</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+                <h1>¡Bienvenido/a de nuevo!</h1>
+                <p>¿Ya tienes una cuenta?</p>
+                <button class="btn login-btn">Iniciar sesión</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../public/js/login.js"></script>
+</body>
+
+</html>

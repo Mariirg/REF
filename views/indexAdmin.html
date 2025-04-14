@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red de Educación Financiera</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="../public/css/indexAdmin.css">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="../views/indexAdmin.html" class="logo-container">
+                        <img src="../public/img/logo.png" alt="logo" class="logo">
+                        <span class="title">REF</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/indexCursos.html">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Inicio</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" onclick="openAddContent()">
+                        <span class="icon">
+                            <ion-icon name="add-circle-outline"></ion-icon>
+                        </span>
+                        <span class="title">Agregar Contenido</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" onclick="openHelp()">
+                        <span class="icon">
+                            <ion-icon name="help-outline"></ion-icon>
+                        </span>
+                        <span class="title">Ayuda</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="cerrarSesion2">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Cerrar sesión</span>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- Modal de Ayuda -->
+        <div id="helpModal" class="modal">
+            <div class="modal-content">
+                <h2>Ayuda</h2>
+                <p>Bienvenido a la sección de ayuda. Aquí encontrarás información sobre cómo usar la plataforma.</p><br>
+
+                <h3>Preguntas Frecuentes</h3><br>
+                <ul>
+                    <li><strong>¿Cómo acceder a las lecciones?</strong> Haz clic en "Lecciones" en el menú principal.
+                    </li>
+                    <li><strong>¿Cómo restablecer mi contraseña?</strong> Ve a Configuración > Seguridad y selecciona
+                        "Restablecer contraseña".</li>
+                    <li><strong>¿Cómo contactar soporte?</strong> Escríbenos a <strong>soporte@ref.com</strong>.</li>
+                </ul>
+
+                <button onclick="closeHelp()">Cerrar</button>
+            </div>
+        </div>
+
+
+        <!-- Modal de Configuración -->
+        <div id="settingsModal" class="modal">
+            <div class="modal-content">
+                <h2>Configuración</h2>
+
+                <h3>Preferencias Generales</h3>
+                <br>
+                <label>
+                    <input type="checkbox">
+                    <br> Activar notificaciones
+                    <br>(correo electrónico)
+                </label>
+                <br><br>
+
+                <h3>Idioma</h3>
+                <select>
+                    <option value="es">Español</option>
+                    <option value="en">Inglés</option>
+                </select>
+                <br><br>
+
+                <h3>País</h3>
+                <select>
+                    <option value="mx">México</option>
+                    <option value="es">España</option>
+                    <option value="us">Estados Unidos</option>
+                </select>
+                <br><br>
+
+                <h3>Seguridad</h3>
+                <p>Puedes cambiar tu contraseña.</p>
+                <br>
+                <button onclick="alert('Función en desarrollo')">Cambiar contraseña</button>
+                <br>
+                <br>
+                <br>
+                <button onclick="alert('Función en desarrollo')">eliminar cuenta</button>
+                <button onclick="closeSettings()">Guardar</button>
+            </div>
+        </div>
+
+
+
+        <div id="addContentModal" class="modal">
+            <div class="modal-leccion">
+                <!-- FORMULARIO 1 - CURSO -->
+                <form id="formCurso" enctype="multipart/form-data">
+                    <section class="leccion">
+                        <div class="conceptos">
+                            <div class="conceptos-container">
+                                <div class="concepto-item">
+                                    <div class="icono">
+                                        <img id="imagenMetas" src="../public/img/finanzas_jovenes.png"
+                                            alt="Finanzas personales para jóvenes">
+                                    </div>
+                                    <input type="text" name="NombreCurso" value="Finanzas personales para jóvenes"
+                                        required>
+                                    <textarea name="Descripcion"
+                                        required>Un curso práctico para ayudar a los jóvenes adultos a tomar el control de sus finanzas personales desde el principio.</textarea>
+                                    <button type="button" onclick="abrirInput('inputMetas')">Cambiar Imagen</button>
+                                    <input type="file" name="imgMetas" id="inputMetas" style="display: none;"
+                                        accept="image/*" onchange="cambiarImagen(event, 'imagenMetas')">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit">Guardar y continuar</button>
+                        <button type="button" onclick="closeAddContent()">Cerrar</button>
+                    </section>
+                </form>
+
+                <!-- FORMULARIO 2 - LECCIÓN -->
+                <form id="formLeccion" style="display: none; opacity: 0; transition: opacity 0.5s ease;">
+                    <section class="leccion" id="leccion1Editable">
+                        <h1 class="titulo">Lección 1</h1>
+                        <input type="text" name="TituloLeccion" value="Finanzas Personales para Jóvenes" required>
+                        <textarea name="IntroLeccion" required>
+                Aprende desde hoy cómo gestionar tu dinero, ahorrar y tomar decisiones financieras inteligentes.
+                        </textarea>
+                
+                        <h2>Introducción al Curso</h2>
+                        <textarea name="IntroCurso" required>
+                Descubre los fundamentos de las finanzas personales...
+                        </textarea>
+                
+                        <h2 class="subtitulo">¿Qué son?</h2>
+                        <textarea name="Definicion" required>
+                Las finanzas personales son la gestión de los recursos financieros...
+                        </textarea>
+                
+                        <h3>Imágenes relacionadas:</h3>
+                        <div class="imagenes-container">
+                            <input type="file" id="img1" name="img1" accept="image/*" required>
+                            <input type="file" id="img2" name="img2" accept="image/*" required>
+                        </div>
+                
+                        <h3>¿Por qué es importante?</h3>
+                        <textarea name="ImportanciaFinanzas" required>
+                Si no controlas tus finanzas personales...
+                        </textarea>
+                
+                        <div class="practica">
+                            <h2>Práctica recomendada:</h2>
+                            <textarea name="Practica" required>
+                Comienza creando tu primer presupuesto personal...
+                            </textarea>
+                        </div>
+                
+                        <button type="submit">Guardar Lección</button>
+                        <button type="button" onclick="volverAlCurso()">Volver</button>
+                    </section>
+                </form>
+                
+                </form>
+            </div>
+        </div>
+
+
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Buscar">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <button id="showProfileBtn">
+                    <img src="../public/img/user2.png">
+                </button>
+                <div id="overlay"></div>
+                <div id="perfilSection">
+                    <div class="card">
+                        <button class="logout-btn" id="cerrarSesion">Cerrar Sesión</button>
+                        <div class="profile-pic"></div>
+                        <div class="bottom">
+                            <div class="content">
+                                <span class="name">My Name</span>
+                                <span class="admin-badge">Administrador</span>
+                                <span class="about-me">Lorem ipsum dolor sit amet consectetur adipisicinFcls
+                                </span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 50%;">Progreso</div>
+                                </div>
+                            </div>
+
+                            <div class="bottom-bottom">
+                                <button class="button">Editar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================= Cards ================== -->
+            <div class="cardBox">
+                <!-- Usuarios Activos -->
+                <div class="card" onclick="showUsers()">
+                    <div>
+                        <div class="numbers">250</div>
+                        <div class="cardName">Usuarios Activos</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <!-- Lecciones Completadas -->
+                <div class="card" onclick="showDetails('Lecciones Completadas', 35, 70)">
+                    <div>
+                        <div class="numbers">35</div>
+                        <div class="cardName">Lecciones Completadas</div>
+                    </div>
+                    <div class="progressBar">
+                        <div class="progress" style="width: 70%;"></div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="book-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <!-- Modal para mostrar detalles de progreso -->
+                <div id="overlay" class="overlay"></div>
+                <div id="detailBox" class="detailBox">
+                    <span class="closeBtn" onclick="closeDetails()">&times;</span>
+                    <h2 id="detailTitle"></h2>
+                    <p id="detailInfo"></p>
+                    <div class="progressContainer">
+                        <div class="progressBar modalProgress">
+                            <div class="progress" id="modalProgress"></div>
+                        </div>
+                        <p id="progressText"></p>
+                    </div>
+                </div>
+
+                <!-- Modal para mostrar usuarios activos -->
+                <div id="userBox" class="detailBox">
+                    <span class="closeBtn" onclick="closeUsers()">&times;</span>
+                    <h2>Usuarios Activos</h2>
+                    <ul id="userList"></ul>
+                </div>
+
+
+                <!-- Nuevos Usuarios -->
+                <div class="recentCustomers">
+                    <div class="cardHeader">
+                        <h2> Usuarios</h2>
+                        <button class="btn" onclick="openUserForm()">Añadir </button>
+                    </div>
+
+                    <table id="userTable">
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/user(1).png" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>María Gómez <br> <span>España</span></h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="assets/imgs/user(1).png" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>José Ramírez <br> <span>México</span></h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Formulario Modal para agregar usuarios -->
+            <div id="userForm" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeUserForm()">&times;</span>
+                    <h2>Agregar Nuevo Usuario</h2>
+                    <input type="text" id="userName" placeholder="Nombre">
+                    <input type="text" id="userCountry" placeholder="País">
+                    <button class="btn" onclick="addUser()">Agregar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========== Scripts =========  -->
+        <script src="../public/js/admin.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+<footer>
+    <p>&copy; 2025 Red de Educación Financiera. MyD.</p>
+    <div class="social-icons">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+</footer>
+
+</html>

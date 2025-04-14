@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanzas Personales para Jóvenes - Curso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../public/css/indexCursos.css">
+    <link rel="icon" href="../public/img/logo22.png" sizes="32x32" type="image/png">
+</head>
+<body>
+
+    <header class="header">
+        <a href="/indexCursos.html" class="logo">REF</a>
+        <nav class="navbar">
+            <a href="/indexCursos.html">Inicio</a>
+            <button id="showProfileBtn">Perfil</button>
+            <a href="/indexAdmin.html" id="adminPanelLink">Panel Admin</a>
+        </nav>
+        
+    </header>
+   
+
+    <!-- Fondo oscuro que cubre toda la pantalla -->
+    <div id="overlay"></div>
+
+    <!-- Sección de perfil que aparecerá al hacer clic en el botón -->
+    <div id="perfilSection">
+        <div class="card">
+            <button class="logout-btn" id="cerrarSesion">Cerrar Sesión</button>
+            <div class="profile-pic"></div>
+            <div class="bottom">
+                <div class="content">
+                    <span class="name">My Name</span>
+                    <span class="about-me">Lorem ipsum dolor sit amet consectetur adipisicinFcls
+                    </span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50%;">Progreso</div>
+                    </div>
+                </div>
+                
+                <div class="bottom-bottom">
+                    <button class="button">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<main>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Bienvenido a nuestros cursos de educación financiera</h1>  
+            <p>Descubre cómo mejorar tus finanzas con nuestras lecciones diseñadas para ti.</p>  
+            <p>Empieza hoy a construir un futuro financiero sólido.</p>              
+        </div>
+    </section>
+
+    <section class="seccion-cursos">
+        <h2>Cursos</h2>
+        <div id="contenedorcurso" class="cursos-basicos">
+
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Red de Educación Financiera. MyD.</p>
+    <div class="social-icons">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+    </div>
+</footer>
+
+<script src="../public/js/indexCursos.js"></script>
+<script src="../public/js/ocultarPanelAdmin.js"></script>
+
+</body>
+
+</html>

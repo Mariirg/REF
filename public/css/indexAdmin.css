@@ -1,0 +1,1992 @@
+/* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* =============== Globals ============== */
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+    outline: none;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #4b0082;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+html {
+  font-size: 80%;
+  overflow-x: hidden;
+}
+
+
+
+
+
+/* =============== Navigation ================ */
+.navigation {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* ===================== Main ===================== */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: -4 50px;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.search {
+  position: relative;
+  width: 495px;
+  margin: 0 145px;
+}
+
+.search label {
+  position: relative;
+  width: 100%;
+}
+
+.search label input {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  padding: 5px 20px;
+  padding-left: 35px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid var(--black2);
+}
+
+.search label ion-icon {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 1.2rem;
+}
+.user {
+  position: absolute;
+  top: 5px;
+  right: 5%;
+  width: clamp(35px, 4vw, 50px); /* Tamaño adaptable entre 35px y 50px */
+  height: clamp(35px, 4vw, 50px); /* Mantiene proporción */
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  left: 90%;
+}
+
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  right: px; /* Ajusta la distancia desde la derecha */
+
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaciado entre el logo y el texto */
+  text-decoration: none;
+  padding: 10px;
+}
+
+.logo {
+  width: 40px; /* Ajusta según el tamaño que necesites */
+  height: auto;
+  object-fit: contain;
+}
+
+#showProfileBtn img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+
+/* Ajustes para tablets */
+@media (max-width: 768px) {
+  .user {
+      top: 5px;
+      right: 3%;
+      width: clamp(10px, 5vw, 45px);
+      height: clamp(10px, 6vw, 45px);
+  }
+}
+
+/* Ajustes para móviles */
+@media (max-width: 480px) {
+  .user {
+      top: 5px;
+      right: 2%;
+      width: clamp(25px, 12vw, 40px);
+      height: clamp(25px, 12vw, 40px);
+  }
+}
+
+#showProfileBtn img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  right: px; /* Ajusta la distancia desde la derecha */
+
+}
+
+/* ================== Order Details List ============== */
+.details {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  /* margin-top: 10px; */
+}
+
+.details .recentOrders {
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.details .cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.cardHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+}
+.cardHeader .btn {
+  position: relative;
+  padding: 5px 10px;
+  background: var(--blue);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
+}
+
+.details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.details table thead td {
+  font-weight: 600;
+}
+.details .recentOrders table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.details .recentOrders table tr:last-child {
+  border-bottom: none;
+}
+.details .recentOrders table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+.details .recentOrders table tr td {
+  padding: 10px;
+}
+.details .recentOrders table tr td:last-child {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(2) {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(3) {
+  text-align: center;
+}
+.status.delivered {
+  padding: 2px 4px;
+  background: #8de02c;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.pending {
+  padding: 2px 4px;
+  background: #e9b10a;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.return {
+  padding: 2px 4px;
+  background: #f00;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.inProgress {
+  padding: 2px 4px;
+  background: #1795ce;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.recentCustomers {
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  padding: 20px;
+  background: var(--white);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+.recentCustomers .imgBx {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.recentCustomers .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.recentCustomers table tr td {
+  padding: 12px 10px;
+}
+.recentCustomers table tr td h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2rem;
+}
+.recentCustomers table tr td h4 span {
+  font-size: 14px;
+  color: var(--black2);
+}
+.recentCustomers table tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+.recentCustomers table tr:hover td h4 span {
+  color: var(--white);
+}
+
+/* Fondo general del modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(50, 0, 80, 0.1); /* fondo sutil con toque morado */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  overflow-y: auto;
+}
+
+/* Contenedor del contenido */
+.modal-leccion {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 10%;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Sección de cada formulario */
+.leccion {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Inputs y textareas */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #d6b8f4;
+  font-size: 16px;
+  background-color: #fdfbff;
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  transition: border 0.3s ease;
+}
+/* Centrado del formulario */
+form.form-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+
+input[type="text"]:focus,
+textarea:focus {
+  border: 1.5px solid #b073d6;
+  outline: none;
+}
+
+/* Contenedor de conceptos */
+.conceptos-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Ítem individual de concepto */
+.concepto-item {
+  background-color: #faf5ff;
+  border: 1px solid #e0cffe;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+}
+
+/* Imágenes de conceptos */
+.concepto-item img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+/* Botones */
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #b073d6;
+  color: white;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #995ac5;
+}
+
+/* Botón secundario (cerrar, volver) */
+button[type="button"] {
+  background-color: transparent;
+  color: #995ac5;
+  border: 1px solid #d9bff2;
+}
+
+button[type="button"]:hover {
+  background-color: #f3e7ff;
+}
+
+/* Títulos */
+.titulo, h2, h3 {
+  color: #6d3d9c;
+  font-family: 'Segoe UI Semibold', sans-serif;
+  margin-bottom: 5px;
+}
+
+.practica {
+  background-color: #f6efff;
+  padding: 15px;
+  border-left: 4px solid #cba8f9;
+  border-radius: 10px;
+}
+
+
+/* ====================== Responsive Design ========================== */
+@media (max-width: 991px) {
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+  .recentOrders {
+    overflow-x: auto;
+  }
+  .status.inProgress {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .cardHeader h2 {
+    font-size: 20px;
+  }
+  .user {
+    min-width: 40px;
+  }
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+  .toggle {
+    z-index: 10001;
+  }
+  .main.active .toggle {
+    color: #fff;
+    position: fixed;
+    right: 0;
+    left: initial;
+  }
+}
+
+
+#showProfileBtn{
+  background: transparent;
+  color: #333; /* Letra negra */
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 10px 18px;
+  border: none; /* Sin bordes */
+  border-radius: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-size: 1.4rem;
+
+}
+#showProfileBtn img {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+#btnshowProfileBtn:hover {
+  color: var(--highlight-color);
+  text-shadow: 0 0 8px #7d3cff;
+}
+
+#btnshowProfile:active {
+  color: var(--highlight-color);
+  text-shadow: 0 0 8px #7d3cff; 
+}
+#perfilSection {
+  display: none; /* Inicialmente oculto */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(244, 230, 230);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* Estilo para el fondo oscuro */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 500;
+  display: none; /* Inicialmente oculto */
+}
+
+/* Para cuando se muestra el perfil */
+#overlay.active,
+#perfilSection.active {
+  display: block;
+}
+
+#perfilSection h2 {
+  color: #6a5acd;
+}
+
+#perfilSection .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.admin-badge {
+  display: inline-block;
+  background-color: #ae55d1; /* Rojo llamativo */
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+
+/* From Uiverse.io by Centered101 */ 
+/* Estilos generales para la caja de tarjetas */
+/* Contenedor de tarjetas */
+.cardBox {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Estilo general de las tarjetas */
+.card, .card-perfil {
+  width: 380px;
+  height: 380px;
+  background: white;
+  border-radius: 32px;
+  padding: 3px;
+  position: relative;
+  box-shadow: #604b4a30 0px 70px 30px -50px;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Estilo de tarjeta de perfil si es necesario */
+.card-perfil {
+  background-color: #f1f1f1; /* Ejemplo de cambio */
+}
+
+/* Icono de correo */
+.card .mail {
+  position: absolute;
+  right: 2rem;
+  top: 1.4rem;
+  background: transparent;
+  border: none;
+}
+
+.card .mail svg {
+  stroke: #f1b6fb;
+  stroke-width: 3px;
+}
+
+.card .mail svg:hover {
+  stroke: #f056f5;
+}
+
+/* Imagen del perfil */
+.card .profile-pic {
+  position: absolute;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  top: 3px;
+  left: 3px;
+  border-radius: 29px;
+  z-index: 1;
+  border: 0px solid #fba4f2;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
+}
+
+.card .profile-pic img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-position: 0px 0px;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.card .profile-pic svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0px 0px;
+  transform-origin: 45% 20%;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+/* Parte inferior de la tarjeta */
+.card .bottom {
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  right: 3px;
+  background: #e3b6fb;
+  top: 80%;
+  border-radius: 29px;
+  z-index: 2;
+  box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px inset;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+}
+
+/* Contenido dentro de la parte inferior */
+.card .bottom .content {
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 260px;
+}
+
+.card .bottom .content .name {
+  display: block;
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bold;
+}
+
+.card .bottom .content .about-me {
+  display: block;
+  font-size: 1rem;
+  color: black;
+  margin-top: 1rem;
+}
+
+/* Sección inferior de la tarjeta con enlaces sociales y botón */
+.card .bottom .bottom-bottom {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card .bottom .bottom-bottom .social-links-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.card .bottom .bottom-bottom .social-links-container svg {
+  height: 20px;
+  fill: white;
+  filter: drop-shadow(0 5px 5px rgba(165, 132, 130, 0.1333333333));
+}
+
+.card .bottom .bottom-bottom .social-links-container svg:hover {
+  fill: #cb56f5;
+  transform: scale(1.2);
+}
+
+.card .bottom .bottom-bottom .button {
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  padding: 0.4rem 0.6rem;
+  box-shadow: rgba(165, 132, 130, 0.1333333333) 0px 5px 5px 0px;
+}
+
+.card .bottom .bottom-bottom .button:hover {
+  background: #f55d56;
+  color: white;
+}
+
+/* Estilo de hover para la tarjeta */
+.card:hover {
+  border-top-left-radius: 55px;
+}
+
+.card:hover .bottom {
+  top: 20%;
+  border-radius: 80px 29px 29px 29px;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+}
+
+.card:hover .profile-pic {
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1;
+  top: 10px;
+  left: 10px;
+  border-radius: 50%;
+  z-index: 3;
+  border: 7px solid #fbb6f9;
+  box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px;
+  transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
+}
+
+.card:hover .profile-pic:hover {
+  transform: scale(1.3);
+  border-radius: 0px;
+}
+
+.card:hover .profile-pic img {
+  transform: scale(2.5);
+  object-position: 0px 25px;
+  transition: all 0.5s ease-in-out 0.5s;
+}
+
+.card:hover .profile-pic svg {
+  transform: scale(2.5);
+  transition: all 0.5s ease-in-out 0.5s;
+}
+
+/* Estilo para el contenedor de tarjetas */
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 100px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+}
+
+/* Estilo de cada tarjeta individual en el grid */
+.cardBox .card {
+  position: relative;
+  width: 356px;
+  height: 210px;
+  background: var(--white);
+  padding: 2%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  
+}
+
+/* Estilo para los números en la tarjeta */
+.cardBox .card .numbers {
+  position: relative;
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: var(--blue);
+}
+
+/* Estilo para el nombre de la tarjeta */
+.cardBox .card .cardName {
+  color: var(--black2);
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+/* Icono dentro de la tarjeta */
+.cardBox .card .iconBx {
+  font-size: 3.5rem;
+  color: var(--black2);
+}
+
+/* Estilo de hover para las tarjetas del grid */
+.cardBox .card:hover {
+  background: var(--blue);
+}
+
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName,
+.cardBox .card:hover .iconBx {
+  color: var(--white);
+}
+
+
+.profile-pic {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #fbb6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-pic img:hover {
+    transform: scale(1.1);
+}
+
+.profile-pic input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: top 0.3s;
+}
+
+#perfilSection {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.cardBox {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 220px;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.numbers {
+  font-weight: bold;
+  color: #6a5acd;
+}
+
+.cardName {
+  color: #333;
+  margin-top: 5px;
+}
+
+
+.progress {
+  height: 100%;
+  background: #6a5acd;
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+}
+
+.iconBx {
+  font-size: 2rem;
+  color: #6a5acd;
+  margin-top: 10px;
+}
+
+/* Estilos del modal */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  z-index: 999;
+}
+
+.detailBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  display: none;
+  z-index: 1000;
+}
+
+.detailBox h2 {
+  color: #6a5acd;
+}
+
+.detailBox p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: 10px;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6a5acd;
+}
+
+/* Modal de usuarios activos */
+#userBox {
+  width: 350px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#userList {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+#userList li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.userActive {
+  color: green;
+}
+
+.userInactive {
+  color: red;
+}
+.details {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  background: #4b0082;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #4b0082;
+}/* ========================= */
+/*         MODAL             */
+/* ========================= */
+
+/* ========================= */
+/*       ESTILOS GENERALES   */
+/* ========================= */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================= */
+/*         MODAL BASE        */
+/* ========================= */
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 320px;
+  max-height: 100vh; /* Evita que salga de la pantalla */
+  overflow-y: auto; /* Habilita el scroll si el contenido es mayor */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Modal General */
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 320px;
+  max-height: 90vh; /* Evita que salga de la pantalla */
+  overflow-y: auto;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Scrollbar */
+.modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Contenido del modal */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Estilos para los botones */
+.modal-content button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #217dbb;
+}
+
+
+/* ========================= */
+/*    SCROLLBAR EN MODALES   */
+/* ========================= */
+.modal::-webkit-scrollbar,
+.modal-leccion::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal::-webkit-scrollbar-thumb,
+.modal-leccion::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb:hover,
+.modal-leccion::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ========================= */
+/*    CONTENIDO DEL MODAL    */
+/* ========================= */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  width: 40%;
+  margin: 10% auto;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-content input,
+select {
+  width: 90%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* ========================= */
+/*       MODAL LECCIÓN       */
+/* ========================= */
+.modal-leccion section {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+/* ========================= */
+/*         BOTONES           */
+/* ========================= */
+
+
+button:hover {
+  background-color: #6C3BA5;
+}
+
+/* Botones específicos */
+.btn-blue {
+  background: #3498db;
+}
+
+.btn-blue:hover {
+  background: #217dbb;
+}
+
+.btn-red {
+  background: #e74c3c;
+}
+
+.btn-red:hover {
+  background: #c0392b;
+}
+
+.btn-green {
+  background: #2ecc71;
+}
+
+.btn-green:hover {
+  background: #27ae60;
+}
+
+/* ========================= */
+/*     TOGGLE SWITCH         */
+/* ========================= */
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-slider {
+  width: 40px;
+  height: 20px;
+  background: #ddd;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.toggle-label {
+  font-size: 14px;
+}
+
+.toggle-note {
+  display: block;
+  font-size: 12px;
+  color: #777;
+  text-align: center;
+}
+
+
+/* ========================= */
+/*       NAVEGACIÓN          */
+/* ========================= */
+
+nav {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* ========================= */
+/*         ÍCONOS            */
+/* ========================= */
+
+ion-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+/* ========================= */
+/*       BOTONES             */
+/* ========================= */
+
+button {
+  background-color: #A45EE5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #6C3BA5;
+}
+
+
+/* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 320px;
+    max-height: 100vh;
+    overflow-y: auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 1000;
+    will-change: transform;
+  }
+
+/* Estilos para la barra de desplazamiento */
+.modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.modal-content input {
+  width: 90%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.modal-leccion section {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+/* Estilos para el scroll en .modal-leccion */
+.modal-leccion::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-leccion::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.modal-leccion::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+
+/* Modales */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  width: 40%;
+  margin: 10% auto;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Botones */
+button {
+  background-color: #A45EE5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #6C3BA5;
+}
+
+
+/* ============================== */
+/*          ESTILOS GENERALES     */
+/* ============================== */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  background-color: #A45EE5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #6C3BA5;
+}
+
+/* ============================== */
+/*          NAVBAR                */
+/* ============================== */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar a {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  margin-left: 2rem;
+  font-weight: 500;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: var(--highlight-color);
+  text-shadow: 0 0 8px #7d3cff;
+}
+
+/* ============================== */
+/*          LECCIONES             */
+/* ============================== */
+.leccion {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 80px auto;
+  padding: 30px;
+  max-width: 900px;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.leccion:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.leccion h2 {
+  font-size: 2rem;
+  color: #4b0082;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 2px solid #b39ddb;
+  padding-bottom: 10px;
+}
+
+.leccion h3 {
+  font-size: 1.7rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.leccion p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.leccion ul, .leccion ol {
+  list-style-type: square;
+  margin-left: 20px;
+}
+
+.leccion li {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.leccion a {
+  color: #4b0082;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.leccion a:hover {
+  color: #b39ddb;
+  text-decoration: underline;
+}
+
+/* ============================== */
+/*      CONCEPTOS CLAVE           */
+/* ============================== */
+.conceptos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.concepto-item {
+  background-color: #f9f9ff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+}
+
+.concepto-item img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+.concepto-item h4 {
+  font-size: 1.4rem;
+  color: #4b0082;
+  margin-bottom: 10px;
+}
+
+.concepto-item p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.concepto-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: #eceaff;
+}
+
+/* ============================== */
+/*   PRÁCTICA RECOMENDADA         */
+/* ============================== */
+.practica {
+  background-color: #f9f9ff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 30px;
+  border-left: 5px solid #4b0082;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Estilos de la tarjeta */
+.card {
+  width: 380px;
+  height: 380px;
+  background: white;
+  border-radius: 32px;
+  padding: 3px;
+  position: relative;
+  box-shadow: #604b4a30 0px 70px 30px -50px;
+  transition: all 0.5s ease-in-out;
+}
+
+.card .logout-btn {
+  background: white;
+  color: black;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  margin-left: 250px;
+}
+
+.logout-btn:hover {
+  background: #f55d56;
+  color: white;
+}
+
+.card .profile-pic {
+  position: absolute;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  top: 3px;
+  left: 3px;
+  border-radius: 29px;
+  z-index: 1;
+  border: 0px solid #fba4f2;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
+}
+
+.card .profile-pic img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease-in-out;
+}
+
+.card .bottom {
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  right: 3px;
+  background: #e3b6fb;
+  top: 80%;
+  border-radius: 29px;
+  z-index: 2;
+  box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px inset;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+}
+
+.card .bottom .content {
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 260px;
+}
+
+.card .bottom .content .name {
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bold;
+}
+
+.card .bottom .content .about-me {
+  font-size: 1rem;
+  color: black;
+  margin-top: 1rem;
+}
+
+.card .bottom .bottom-bottom {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card .bottom .bottom-bottom .social-links-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.card .bottom .bottom-bottom .social-links-container svg {
+  height: 20px;
+  fill: white;
+  filter: drop-shadow(0 5px 5px rgba(165, 132, 130, 0.1333333333));
+}
+
+.card .bottom .bottom-bottom .social-links-container svg:hover {
+  fill: #cb56f5;
+  transform: scale(1.2);
+}
+
+.card .bottom .bottom-bottom .button {
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  font-size: 1.2rem;
+  padding: 0.4rem 0.6rem;
+  box-shadow: rgba(165, 132, 130, 0.1333333333) 0px 5px 5px 0px;
+}
+
+.card .bottom .bottom-bottom .button:hover {
+  background: #f55d56;
+  color: white;
+}
+
+.card:hover {
+  border-top-left-radius: 55px;
+}
+
+.card:hover .bottom {
+  top: 20%;
+  border-radius: 80px 29px 29px 29px;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+}
+
+.card:hover .profile-pic {
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1;
+  top: 10px;
+  left: 10px;
+  border-radius: 50%;
+  z-index: 3;
+  border: 7px solid #fbb6f9;
+  box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px;
+  transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
+}
+
+.card:hover .profile-pic:hover {
+  transform: scale(1.3);
+  border-radius: 0px;
+}
+
+.card:hover .profile-pic img {
+  transform: scale(2.5);
+  object-position: 0px 25px;
+  transition: all 0.5s ease-in-out 0.5s;
+}
+
+.card:hover .profile-pic svg {
+  transform: scale(2.5);
+  transition: all 0.5s ease-in-out 0.5s;
+}
+
+/* Estilo de la foto de perfil */
+.profile-pic {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #fbb6f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Hace la imagen circular */
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+.profile-pic img:hover {
+  transform: scale(1.1);
+}
+
+.profile-pic input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* Barra de progreso */
+.progress-container {
+  width: 120px; /* Tamaño más compacto */
+  text-align: center;
+  position: absolute;
+  top: 3px; /* Ajustado para que quede justo debajo de la imagen */
+  left: 80%;
+  transform: translateX(-50%);
+  z-index: 10; /* Asegura que esté sobre otros elementos */
+  padding: 5px;
+  border-radius: 10px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.card:hover .progress-container {
+  opacity: 1;
+  visibility: visible;
+}
+
+.progress-label {
+  font-size: 1.2rem;
+  color: #4a4a4a;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 50%; /* Ajuste según el progreso */
+  background: linear-gradient(90deg, #7d3cff, #cb56f5);
+  box-shadow: 0 0 10px rgba(125, 60, 255, 0.7);
+  transition: width 0.5s ease-in-out;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+  line-height: 8px; /* Centrar verticalmente */
+}
+
+/* Footer */
+footer {
+  background-color: #f5f5fa;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.4rem;
+  box-shadow: 0px -8px 15px rgba(0, 0, 0, 0.1);
+}
+
+footer .social-icons {
+  margin-top: 15px;
+}
+
+footer .social-icons a {
+  margin: 0 10px;
+  color: #4b0082;
+  text-decoration: none;
+  transition: color 0.3s;
+}
