@@ -8,26 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const aboutSpan = document.querySelector(".about-me");
     const cerrarSesionBtn = document.getElementById("cerrarSesion");
     const adminPanel = document.getElementById("adminPanel");
-    
+
 
     fetch('/curso')
         .then(res => res.json())
         .then(data => {
             const contenedor = document.getElementById('contenedorcurso');
+            const rol = localStorage.getItem("rol"); // 🔐 Traer el rol desde localStorage
             contenedor.innerHTML = '';
 
             data.forEach(curso => {
-                /* const bloque = document.createElement('div');
-                 bloque.classList.add('leccion');
-                 bloque.innerHTML = `
-                   <a href="leccion${Curso.IdCurso}.html">
-                     <img src="${Curso.ImgMetas}" alt="${Curso.NombreCurso}" class="leccion-img">
-                     <h4>${Curso.NombreCurso}</h4>
-                     <p>${Curso.Descripcion}</p>
-                   </a>
-                 `;
-                 contenedor.appendChild(bloque);*/
-                // Crear div principal del curso
                 const cursoDiv = document.createElement("div");
                 cursoDiv.classList.add("curso");
 
@@ -35,25 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 const titulo = curso.NombreCurso;
                 const nombreArchivo = titulo.replace(/\s+/g, "_") + ".html";
                 const anchor = document.createElement("a");
-                anchor.href = `/lecciones/${nombreArchivo}`;
-    
-
-               /* if (cursoData.bloqueado) {
-                    anchor.classList.add("bloqueado");
-                }*/
+                anchor.href = `/lecciones/${nombreArchivo}?IdCurso=${curso.IdCurso}`;
 
                 // Imagen
                 const img = document.createElement("img");
                 img.src = curso.ImgMetas;
                 img.alt = curso.NombreCurso;
-
-                // Candado si está bloqueado
-              /*  if (cursoData.bloqueado) {
-                    const candado = document.createElement("span");
-                    candado.id = "candado";
-                    candado.textContent = "🔒";
-                    anchor.appendChild(candado);
-                }*/
 
                 // Título
                 const h3 = document.createElement("h3");
@@ -66,8 +43,125 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Añadir elementos al anchor
                 anchor.append(img, h3, p);
 
-                // Añadir anchor al div del curso
+                // Agregar anchor al curso
                 cursoDiv.appendChild(anchor);
+
+                // 🔒 Solo mostrar si es admin
+                if (rol === "admin") {
+                    const botonEditar = document.createElement("button");
+                    botonEditar.textContent = "Editar";
+                    botonEditar.classList.add("btn-curso", "btn-editar");
+
+                    botonEditar.addEventListener("click", () => {
+                        Swal.fire({
+                            title: 'Editar curso',
+                            html: `
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <img src="${curso.ImgMetas}" alt="Imagen actual" style="width: 100px; height: auto; margin-bottom: 10px; border-radius: 8px;">
+                            <input type="file" id="imagenCurso" class="swal2-file">
+                        </div>
+                        <input id="nombreCurso" class="swal2-input" placeholder="Nombre del curso" value="${curso.NombreCurso}">
+                        <textarea id="descripcionCurso" class="swal2-textarea" placeholder="Descripcion">${curso.Descripcion}</textarea>
+                    `,
+                            showCancelButton: true,
+                            confirmButtonText: 'Guardar cambios',
+                            cancelButtonText: 'Cancelar',
+                            confirmButtonColor: "#6d44c0",
+                            cancelButtonColor: "#d33",
+                            focusConfirm: false,
+
+                            preConfirm: () => {
+                                const nombre = document.getElementById('nombreCurso').value;
+                                const descripcion = document.getElementById('descripcionCurso').value;
+                                const inputImagen = document.getElementById('imagenCurso');
+                                const imagenFile = inputImagen.files[0];
+                                const imagenAnterior = curso.ImgMetas;
+
+                                if (!nombre || !descripcion) {
+                                    Swal.showValidationMessage('Nombre y descripción obligatorios.');
+                                    return false;
+                                }
+
+                                const formData = new FormData();
+                                formData.append("NombreCurso", nombre);
+                                formData.append("Descripcion", descripcion);
+                                if (imagenFile) {
+                                    formData.append("imagen", imagenFile);
+                                } else {
+                                    formData.append("imagenAnterior", imagenAnterior);
+                                }
+
+                                return formData;
+                            }
+
+                        }).then(async (result) => {
+                            if (result.isConfirmed) {
+                                const formData = result.value;
+
+                                try {
+                                    const response = await fetch(`/curso/actualizar/${curso.IdCurso}`, {
+                                        method: "PUT",
+                                        body: formData
+                                    });
+
+                                    const data = await response.json();
+
+                                    if (response.ok) {
+                                        window.location.reload();
+                                    } else {
+                                        Swal.fire("Error", data.error || "No se pudo actualizar el curso.", "error");
+                                    }
+
+                                } catch (error) {
+                                    console.error("Error actualizando curso:", error);
+                                    Swal.fire("Error", "No se pudo actualizar el curso.", "error");
+                                }
+                            }
+                        });
+                    });
+
+                    const botonEliminar = document.createElement("button");
+                    botonEliminar.textContent = "Eliminar";
+                    botonEliminar.classList.add("btn-curso", "btn-eliminar");
+
+                    botonEliminar.addEventListener("click", () => {
+                        Swal.fire({
+                            title: 'Eliminar curso',
+                            showCancelButton: true,
+                            confirmButtonText: 'Eliminar',
+                            cancelButtonText: 'Cancelar',
+                            confirmButtonColor: "#6d44c0",
+                            cancelButtonColor: "#d33",
+                            focusConfirm: false,
+
+                        }).then(async (result) => {
+                            if (result.isConfirmed) {
+                                try {
+                                    const response = await fetch(`/curso/eliminar/${curso.IdCurso}/${curso.NombreCurso}`, {
+                                        method: "DELETE"
+                                    });
+
+                                    const data = await response.json();
+
+                                    if (response.ok) {
+                                        window.location.reload();
+                                    } else {
+                                        Swal.fire("Error", data.error || "No se pudo eliminar el curso.", "error");
+                                    }
+
+                                } catch (error) {
+                                    console.error("Error eliminando curso:", error);
+                                    Swal.fire("Error", "No se pudo eliminar el curso.", "error");
+                                }
+                            }
+                        });
+                    });
+
+                    // 👉 Agregar botones solo si es admin
+                    cursoDiv.append(botonEditar, botonEliminar);
+                }
+
+                // 👉 Agregar el div al contenedor principal
                 contenedor.appendChild(cursoDiv);
             });
         })
@@ -80,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const payload = JSON.parse(atob(token.split(".")[1]));
             return payload.id;
         } catch (error) {
-            console.error("❌ Error al obtener el ID del usuario desde el token:", error);
+            console.error(" Error al obtener el ID del usuario desde el token:", error);
             return null;
         }
     }
@@ -94,6 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function cargarPerfil() {
         try {
+            const progreso = document.getElementById("progreso-usuario")
             const response = await fetch(`http://localhost:3000/api/usuarios/${IdUsuario}`);
             if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
             const data = await response.json();
@@ -102,6 +197,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const Descripcion = localStorage.getItem("perfilDescripcion") || data.Descripcion || "Descripción no disponible";
             const FotoPerfil = localStorage.getItem("perfilFoto") || data.FotoPerfil;
 
+            progreso.style.width = data.ProgresoUsuario + "%";
+
+            progreso.innerHTML = data.ProgresoUsuario + "%";
             nameSpan.textContent = NombreUsuario;
             aboutSpan.textContent = Descripcion;
 
@@ -109,29 +207,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 profilePic.style.backgroundImage = `url(${FotoPerfil})`;
             }
 
-            console.log("ℹ️ Perfil cargado:", { NombreUsuario, Descripcion, FotoPerfil });
+            console.log(" Perfil cargado:", { NombreUsuario, Descripcion, FotoPerfil });
         } catch (error) {
-            console.error("❌ Error al cargar el perfil:", error);
+            console.error(" Error al cargar el perfil:", error);
         }
     }
 
     async function guardarCambiosEnBD(NombreUsuario, Descripcion, FotoPerfil) {
         if (!NombreUsuario?.trim() || !Descripcion?.trim()) {
-            alert("❌ Nombre y descripción son obligatorios.");
+            alert(" Nombre y descripción son obligatorios.");
             return;
         }
-
-        // Si no se proporciona una nueva imagen, se mantiene la actual
-        const imagenActual = localStorage.getItem("perfilFoto") || "";
 
         const datosActualizados = {
             IdUsuario,
             NombreUsuario: NombreUsuario.trim(),
             Descripcion: Descripcion.trim(),
-            FotoPerfil: FotoPerfil || imagenActual
+            imgUrl: FotoPerfil
         };
 
-        console.log("📤 Guardando en BD:", datosActualizados);
+        console.log(" Guardando en BD:", datosActualizados);
 
         try {
             const response = await fetch(`http://localhost:3000/api/usuarios/${IdUsuario}`, {
@@ -155,11 +250,11 @@ document.addEventListener("DOMContentLoaded", () => {
             aboutSpan.textContent = Descripcion;
             if (profilePic) profilePic.style.backgroundImage = `url(${FotoPerfil})`;
 
-            console.log("✅ Cambios guardados correctamente.");
-            alert("✅ Los cambios se han guardado correctamente.");
+            console.log(" Cambios guardados correctamente.");
+            alert(" Los cambios se han guardado correctamente.");
         } catch (error) {
-            console.error("❌ Error al guardar en la BD:", error.message);
-            alert(`❌ Error al guardar: ${error.message}`);
+            console.error(" Error al guardar en la BD:", error.message);
+            alert(` Error al guardar: ${error.message}`);
         }
     }
 
@@ -171,12 +266,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const newAbout = prompt("Ingrese información sobre usted:", currentAbout);
 
         const fondo = profilePic.style.backgroundImage;
+        const fondoLimpio = fondo.replace(/^url\(["']?/, "").replace(/["']?\)$/, "");
+
         if (newName?.trim() && newAbout?.trim()) {
-            guardarCambiosEnBD(newName, newAbout, fondo);
+            guardarCambiosEnBD(newName.trim(), newAbout.trim(), fondoLimpio);
         } else {
-            alert("❌ Por favor, completa todos los campos correctamente.");
+            alert(" Por favor, completa todos los campos correctamente.");
         }
     });
+
 
     profilePic?.addEventListener("click", () => {
         const fileInput = document.createElement("input");
@@ -186,11 +284,10 @@ document.addEventListener("DOMContentLoaded", () => {
         fileInput.addEventListener("change", async (event) => {
             const file = event.target.files[0];
             if (!file) {
-                alert("❌ Por favor, selecciona una imagen válida.");
+                alert(" Por favor, selecciona una imagen válida.");
                 return;
             }
 
-            // Subir imagen a Azure
             const formData = new FormData();
             formData.append("image", file);
 
@@ -216,8 +313,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 await guardarCambiosEnBD(currentName, currentAbout, imageUrl);
 
             } catch (err) {
-                console.error("❌ Error al subir imagen o guardar perfil:", err.message);
-                alert("❌ Error al subir imagen o guardar perfil.");
+                console.error(" Error al subir imagen o guardar perfil:", err.message);
+                alert(" Error al subir imagen o guardar perfil.");
             }
         });
 
@@ -247,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const payload = JSON.parse(atob(token.split(".")[1]));
             return payload.Rol;
         } catch (error) {
-            console.error("❌ Error al obtener el rol del usuario:", error);
+            console.error(" Error al obtener el rol del usuario:", error);
             return null;
         }
     }
@@ -288,12 +385,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 contenedor.appendChild(div);
             });
         } catch (error) {
-            console.error("❌ Error cargando lecciones:", error);
+            console.error(" Error cargando lecciones:", error);
         }
     }
+
 
     document.addEventListener("DOMContentLoaded", cargarLecciones);
 
     cargarPerfil();
     verificarRolAdmin();
 });
+function editar() {
+    const params = new URLSearchParams(window.location.search);
+    const IdCurso = params.get("IdCurso");
+    window.location.href = `/editarLeccion.html?IdCurso=${IdCurso}`
+}

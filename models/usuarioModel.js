@@ -38,6 +38,8 @@ const obtenerActivos = async () => {
   return result.recordset;
 };
 
+
+
 module.exports = {
   obtenerPorId,
   actualizarPerfil,

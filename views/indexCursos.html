@@ -15,7 +15,7 @@
         <nav class="navbar">
             <a href="/indexCursos.html">Inicio</a>
             <button id="showProfileBtn">Perfil</button>
-            <a href="/indexAdmin.html" id="adminPanelLink">Panel Admin</a>
+            <a href="indexAdmin.html" id="adminPanelLink">Panel Admin</a>
         </nav>
         
     </header>
@@ -37,12 +37,12 @@
                 </div>
                 <div class="progress-container">
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 50%;">Progreso</div>
+                        <div class="progress-fill" id="progreso-usuario"></div>
                     </div>
-                </div>
+                </div>                
                 
                 <div class="bottom-bottom">
-                    <button class="button">Editar</button>
+                    <button class="button" id="editProfileBtn">Editar</button>
                 </div>
             </div>
         </div>
@@ -60,22 +60,18 @@
     <section class="seccion-cursos">
         <h2>Cursos</h2>
         <div id="contenedorcurso" class="cursos-basicos">
-
         </div>
     </section>
 </main>
 
 <footer>
     <p>&copy; 2024 Red de Educación Financiera. MyD.</p>
-    <div class="social-icons">
-        <a href="#" aria-label="Instagram">Instagram</a>
-        <a href="#" aria-label="Facebook">Facebook</a>
-        <a href="#" aria-label="LinkedIn">LinkedIn</a>
-    </div>
 </footer>
 
 <script src="../public/js/indexCursos.js"></script>
 <script src="../public/js/ocultarPanelAdmin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </body>
 

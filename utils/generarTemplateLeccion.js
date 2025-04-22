@@ -3,6 +3,7 @@ const path = require('path');
 
 const generarTemplateLeccion = (titulo, contenido) => {
   const html = `
+  
   <!DOCTYPE html>
 <html lang="es">
 
@@ -12,22 +13,52 @@ const generarTemplateLeccion = (titulo, contenido) => {
   <title>Lección: ${contenido.TituloLeccion}</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap"
     rel="stylesheet" />
-    <link rel="stylesheet" href="/public/curso1/css/leccion1.css">
+    <link rel="stylesheet" href="/public/css/leccion1.css">
   <link rel="icon" href="../../public/img/logo22.png" sizes="32x32" type="image/png" />
 </head>
 
 <body>
-  <form class="form-container">
-    <header>
-      <a href="/indexCursos.html" class="logo">REF</a>
-      <nav class="navbar">
-        <a href="/indexCursos.html">Inicio</a>
-        <button type="button" id="showProfileBtn">Perfil</button>
-      </nav>
-    </header>
 
+   <header class="header">
+    <a href="/indexCursos.html" class="logo">REF</a>
+    <nav class="navbar">
+      <a href="/indexCursos.html">Inicio</a>
+      <button id="showProfileBtn">Perfil</button>
+      <a href="/indexAdmin.html" id="adminPanelLink">Panel Admin</a>
+    </nav>
+
+  </header>
+<!-- Fondo oscuro que cubre toda la pantalla -->
+ <div id="overlay"></div>
+
+  <!-- Sección de perfil que aparecerá al hacer clic en el botón -->
+  <div id="perfilSection">
+    <div class="card">
+      <button class="logout-btn" id="cerrarSesion">Cerrar Sesión</button>
+      <div class="profile-pic"></div>
+      <div class="bottom">
+        <div class="content">
+          <span class="name">My Name</span>
+          <span class="about-me">Lorem ipsum dolor sit amet consectetur adipisicinFcls
+          </span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progreso-usuario"></div>
+          </div>
+        </div>
+
+        <div class="bottom-bottom">
+          <button class="button" id="editProfileBtn">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
     <div class="container">
       <section class="leccion" id="leccion1">
+     <button class="btn-editar hidden" onclick="editar()">Editar lección</button>
+      <br>
         <h1 class="titulo">${contenido.TituloLeccion}</h1>
         <p>${contenido.IntroLeccion}</p>
       </section>
@@ -58,20 +89,23 @@ const generarTemplateLeccion = (titulo, contenido) => {
           <p>${contenido.Practica}</p>
         </div>
       </section>
+
+     <!-- Botón Finalizar -->
+      <div class="finalizar-curso">
+        <button type="button" onclick="finalizarCurso()" id="finalizarBtn">Finalizar</button>
+      </div>
+      
     </div>
 </form>
 
       <footer>
         <p>&copy; 2025 Red de Educación Financiera. MyD.</p>
-        <div class="social-icons">
-          <a href="#" aria-label="Instagram">Instagram</a>
-          <a href="#" aria-label="Facebook">Facebook</a>
-          <a href="#" aria-label="LinkedIn">LinkedIn</a>
-        </div>
       </footer>
    
-
-  <script src="../../public/js/leccion1.js"></script>
+  <script src="../../public/js/indexCursos.js"></script>
+  <script src="../../public/js/ocultarPanelAdmin.js"></script>
+  <script src="../../public/js/finalizarLeccion.js"></script>
+    <script src="../../public/js/ocultarEditar.js"></script>
 </body>
 
 </html>

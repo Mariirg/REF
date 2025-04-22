@@ -8,12 +8,10 @@ const sql = require("mssql");
 const { poolPromise } = require("./models/database");
 const uploadRoutes = require("./routes/uploadRoutes");
 const cursoRoutes = require('./routes/cursoRoutes');
-
+const LeccionesRoutes = require('./routes/leccionesRoutes');
 
 // Rutas externas
 const rutasAuth = require("./routes/auth");
-const progresoRoutes = require("./routes/progresoRoutes");
-const evaluacionesRoutes = require("./routes/evaluacionesRoutes");
 
 
 // Inicialización
@@ -36,6 +34,10 @@ app.use('/curso', (req, res, next) => {
   console.log("🌟 Llegó una solicitud a /curso");
   next(); // Esto pasa al siguiente middleware o ruta
 }, cursoRoutes);
+app.use('/leccion', (req, res, next) => {
+  console.log("🌟 Llegó una solicitud a /leccion");
+  next(); // Esto pasa al siguiente middleware o ruta
+}, LeccionesRoutes);
 // Página principal
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index.html"));
@@ -45,8 +47,7 @@ app.get("/", (req, res) => {
 // 🔌 RUTAS API
 // ══════════════════════════════════════
 app.use("/api/auth", rutasAuth);
-app.use("/api/progreso", progresoRoutes);
-app.use("/api/evaluaciones", evaluacionesRoutes);
+
 
 
 app.get("/api/usuarios/activos", async (req, res) => {
@@ -75,7 +76,7 @@ app.get("/api/usuarios", async (req, res) => {
   try {
     const pool = await poolPromise;
     const result = await pool.request().query(`
-      SELECT IdUsuario, NombreUsuario, Correo, Rol, Descripcion, Progreso, FotoPerfil, Activo
+      SELECT IdUsuario, NombreUsuario, Correo, Rol, Descripcion, FotoPerfil, Activo
       FROM Usuarios
     `);
 
@@ -104,7 +105,7 @@ app.get("/api/usuarios/:IdUsuario", async (req, res) => {
     const result = await pool.request()
       .input("IdUsuario", sql.Int, idUsuario)
       .query(`
-        SELECT IdUsuario, NombreUsuario, Correo, Rol, Descripcion, Progreso, FotoPerfil
+        SELECT IdUsuario, NombreUsuario, Correo, Rol, Descripcion, ProgresoUsuario, FotoPerfil
         FROM Usuarios WHERE IdUsuario = @IdUsuario
       `);
 
@@ -125,13 +126,13 @@ app.get("/api/usuarios/:IdUsuario", async (req, res) => {
 app.put("/api/usuarios/:IdUsuario", async (req, res) => {
   try {
     const idUsuario = parseInt(req.params.IdUsuario, 10);
-    const { NombreUsuario, Descripcion, FotoPerfil } = req.body;
+    const { NombreUsuario, Descripcion, imgUrl } = req.body;
     if (isNaN(idUsuario)) {
       return res.status(400).json({ error: "ID inválido. Debe ser un número." });
     }
 
-    if (!NombreUsuario || !Descripcion || !FotoPerfil) {
-      return res.status(400).json({ error: "Nombre, descripción y foto son requeridos." });
+    if (!NombreUsuario || !Descripcion || !imgUrl ) {
+      return res.status(400).json({ error: "Nombre, descripción e imagen son requeridos." });
     }
 
     const pool = await poolPromise;
@@ -140,7 +141,7 @@ app.put("/api/usuarios/:IdUsuario", async (req, res) => {
       .input("IdUsuario", sql.Int, idUsuario)
       .input("NombreUsuario", sql.NVarChar, NombreUsuario)
       .input("Descripcion", sql.NVarChar, Descripcion)
-      .input("FotoPerfil", sql.NVarChar, FotoPerfil) // 👈 Guarda la URL directamente
+      .input("FotoPerfil", sql.VarChar, imgUrl)
       .query(`
         UPDATE Usuarios
         SET NombreUsuario = @NombreUsuario,
@@ -151,11 +152,38 @@ app.put("/api/usuarios/:IdUsuario", async (req, res) => {
 
     res.status(200).json({ mensaje: "Perfil actualizado correctamente." });
   } catch (error) {
-    console.error("❌ Error al actualizar el perfil:", error.message);
+    console.error("❌ Error al actualizar el perfil:", error);
     res.status(500).json({ error: "Error interno del servidor." });
   }
 });
 
+// ══════════════════════════════════════
+// RUTA: Obtener cursos
+// ══════════════════════════════════════
+
+// Ruta para obtener todos los cursos
+app.get('/curso', async (req, res) => {
+  try {
+    const pool = await poolPromise;
+    const result = await pool.request().query('SELECT * FROM Cursos'); // Obtén todos los cursos
+    res.json(result.recordset); // Devuelve los cursos como JSON
+  } catch (error) {
+    console.error('❌ Error al obtener los cursos:', error.message);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
+
+// Ruta para obtener el total de cursos
+app.get('/curso/total', async (req, res) => {
+  try {
+    const pool = await poolPromise;
+    const result = await pool.request().query('SELECT COUNT(*) AS total FROM Cursos'); // Cuenta el total de cursos
+    res.json(result.recordset[0]); // Devuelve el total de cursos
+  } catch (error) {
+    console.error('❌ Error al obtener el total de cursos:', error.message);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
 // ══════════════════════════════════════
 // 🔄 RUTA: Archivos HTML dinámicos en views
 // ══════════════════════════════════════
@@ -186,4 +214,41 @@ poolPromise
     console.error("❌ Error al conectar a la base de datos:", err.message);
   });
   
-// RUTA: Obtener usuarios activos
+// RUTA: eliminar usuarios y asignar rol 
+
+app.delete("/api/usuarios/:IdUsuario", async (req, res) => {
+  try {
+    const id = parseInt(req.params.IdUsuario);
+    const pool = await poolPromise;
+    await pool.request()
+      .input("IdUsuario", sql.Int, id)
+      .query(`DELETE FROM Usuarios WHERE IdUsuario = @IdUsuario`);
+    res.status(200).json({ mensaje: "Usuario eliminado correctamente" });
+  } catch (error) {
+    console.error("❌ Error al eliminar usuario:", error.message);
+    res.status(500).json({ error: "Error interno" });
+  }
+});
+
+app.put("/api/usuarios/:IdUsuario/rol", async (req, res) => {
+  try {
+    const id = parseInt(req.params.IdUsuario);
+    const { nuevoRol } = req.body;
+    const pool = await poolPromise;
+
+    await pool.request()
+      .input("IdUsuario", sql.Int, id)
+      .input("Rol", sql.NVarChar, nuevoRol)
+      .query(`UPDATE Usuarios SET Rol = @Rol WHERE IdUsuario = @IdUsuario`);
+
+    res.status(200).json({ mensaje: "Rol actualizado" });
+  } catch (error) {
+    console.error("❌ Error al cambiar rol:", error.message);
+    res.status(500).json({ error: "Error interno" });
+  }
+  
+  app.use('/usuarios', require('./routes/usuariosRoutes'));
+});
+
+
+

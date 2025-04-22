@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f3e8ff; /* Fondo suave en tonos lilas */
+}
+
+form {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+form h1 {
+    font-size: 30px;
+    color: #6d28d9; /* Color lila para el encabezado */
+    margin-bottom: 20px;
+}
+
+.input-box {
+    position: relative;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 13px 20px;
+    background: #f3e8ff;
+    border-radius: 8px;
+    border: 2px solid #d8b4fe; /* Borde lila */
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.input-box input:focus {
+    border-color: #9333ea; /* Cambia el borde al hacer focus */
+    box-shadow: 0 0 8px rgba(147, 51, 234, 0.5); /* Sombra morada */
+}
+
+.input-box input::placeholder {
+    color: #8b5cf6;
+    font-weight: 400;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #9333ea; /* Fondo lila oscuro */
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background: #6b21a8; /* Cambia a un morado más oscuro al pasar el ratón */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    background: #4c1d95; /* Un tono más oscuro al hacer clic */
+}
+
+/* Pequeños ajustes de responsividad */
+@media screen and (max-width: 650px) {
+    form {
+        padding: 30px;
+    }
+}

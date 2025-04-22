@@ -1,4 +1,5 @@
 
+  
   <!DOCTYPE html>
 <html lang="es">
 
@@ -13,135 +14,113 @@
 </head>
 
 <body>
-  <form class="form-container">
-    <header>
-      <a href="/indexCursos.html" class="logo">REF</a>
-      <nav class="navbar">
-        <a href="/indexCursos.html">Inicio</a>
-        <button type="button" id="showProfileBtn">Perfil</button>
-      </nav>
-    </header>
 
+   <header class="header">
+    <a href="/indexCursos.html" class="logo">REF</a>
+    <nav class="navbar">
+      <a href="/indexCursos.html">Inicio</a>
+      <button id="showProfileBtn">Perfil</button>
+      <a href="/indexAdmin.html" id="adminPanelLink">Panel Admin</a>
+    </nav>
+
+  </header>
+<!-- Fondo oscuro que cubre toda la pantalla -->
+ <div id="overlay"></div>
+
+  <!-- Sección de perfil que aparecerá al hacer clic en el botón -->
+  <div id="perfilSection">
+    <div class="card">
+      <button class="logout-btn" id="cerrarSesion">Cerrar Sesión</button>
+      <div class="profile-pic"></div>
+      <div class="bottom">
+        <div class="content">
+          <span class="name">My Name</span>
+          <span class="about-me">Lorem ipsum dolor sit amet consectetur adipisicinFcls
+          </span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progreso-usuario"></div>
+          </div>
+        </div>
+
+        <div class="bottom-bottom">
+          <button class="button" id="editProfileBtn">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
     <div class="container">
       <section class="leccion" id="leccion1">
+     <button class="btn-editar hidden" onclick="editar()">Editar lección</button>
+      <br>
         <h1 class="titulo">Finanzas Personales para Jóvenes</h1>
-        <p>  Aprende desde hoy cómo gestionar tu dinero, ahorrar y tomar decisiones financieras inteligentes.
-        </p>
+        <p>                Aprende desde hoy cómo gestionar tu dinero, ahorrar y tomar decisiones financieras inteligentes.
+                        </p>
       </section>
 
       <section class="contenido-curso">
         <h2>Introducción al Curso</h2>
-        <p>Este curso es una guía práctica y sencilla para que tomes el control de tu dinero desde hoy. Está pensado para jóvenes que quieren aprender a:
+        <p>En la actualidad, la mayoría de los jóvenes no reciben una formación adecuada sobre cómo manejar su dinero, lo que los lleva a tomar decisiones financieras poco acertadas desde muy temprana edad. Este curso está diseñado para cambiar eso. Aquí aprenderás a tener una relación sana con el dinero, a entender cómo funciona y cómo utilizarlo de forma inteligente desde el inicio de tu vida adulta.
 
-• No gastar todo lo que ganan
-
-• Ahorrar sin morir en el intento
-
-• Evitar deudas innecesarias
-
-• Tener metas claras y alcanzables
-
-• Aprender a manejar su dinero como adultos responsables
-
-Este módulo reúne todo lo básico que deberías saber para comenzar tu camino financiero con paso firme.   </p>
+La idea es darte las herramientas básicas para que tomes el control de tus finanzas y tomes decisiones que te beneficien a corto, mediano y largo plazo. No importa si aún no tienes ingresos propios o si apenas estás empezando a ganar tu primer salario, lo que aprendas aquí te servirá para toda la vida.</p>
 
         <h2 class="subtitulo">¿Qué es?</h2>
-        <p>Las finanzas personales son el manejo de tus ingresos, tus gastos, tus ahorros, tus deudas y tus metas. Es un conjunto de decisiones que tomas cada día, aunque no lo notes:
+        <p>Las finanzas personales son todas aquellas decisiones relacionadas con cómo ganas, gastas, ahorras, inviertes y proteges tu dinero. Van mucho más allá de simplemente "tener plata": se trata de saber administrarla de forma consciente y estratégica.
 
-• ¿Compras café todos los días?
+Manejar bien tus finanzas personales significa tener claridad sobre tus ingresos y egresos, evitar deudas innecesarias, ahorrar con propósito y tomar decisiones financieras pensando en tu bienestar futuro. Todo esto tiene un impacto directo en tu calidad de vida.</p>
 
-• ¿Sabes cuánto dinero te queda después de pagar tus cosas básicas?
-
-• ¿Has usado una tarjeta de crédito o un préstamo?
-
-• ¿Ahorras para algo o solo cuando te sobra?
-
-Si dijiste “sí” a cualquiera de esas preguntas, ya estás tomando decisiones financieras, te des cuenta o no. </p>
-
-       <div class="imagenes-leccion">
-        <figure>
-          <img src="https://ref2025.blob.core.windows.net/curso/8594964f-c0cf-4424-852a-8714943122af.avif" alt="Imagen explicativa 1" />
+      <div class="imagenes-leccion">
+       <figure>
+          <img src="https://res.cloudinary.com/dwcydursu/image/upload/v1745353775/09e82911-620f-49d9-b466-81de05288579.jpg" alt="Imagen explicativa 1" />
           <figcaption>Ilustración introductoria de la lección</figcaption>
         </figure>
             <figure>
-          <img src="https://ref2025.blob.core.windows.net/curso/6ff0e55b-882a-442f-939b-029d7822ea9e.jpg" alt="Imagen explicativa 1" />
+          <img src="https://res.cloudinary.com/dwcydursu/image/upload/v1745353776/7939c1e8-6e81-430c-9548-8401207a299c.avif" alt="Imagen explicativa 1" />
           <figcaption>Ilustración introductoria de la lección</figcaption>
         </figure>
-       </div>
-            
+            </div>
+
         <h3 class="subtitulo">¿Por qué es importante?</h3>
-        <p>Porque tus decisiones de hoy construyen o destruyen tu tranquilidad de mañana.
+        <p>Aprender a manejar tu dinero desde joven te permite evitar errores costosos que muchas personas solo logran corregir después de años. Si sabes administrar bien tus recursos, puedes evitar deudas por compras impulsivas, tener un fondo de emergencia, ahorrar para tus metas y empezar a construir estabilidad económica desde temprano.
 
-Aprender esto te ayuda a:
+Además, cuando entiendes cómo funciona el dinero, es más fácil tomar decisiones libres de presión social. No necesitas gastar más para demostrar algo, porque sabes que tu paz financiera vale mucho más que un lujo momentáneo.
 
-📌 No vivir endeudado
-
-📌 Saber en qué se te va el dinero
-
-📌 Cumplir metas (viajar, estudiar, independizarte, etc.)
-
-📌 Tener un fondo para emergencias
-
-📌 Evitar el estrés de no saber si te alcanza o no
-
-Dato: Según estudios, el 70% de los jóvenes no lleva control de sus gastos. ¡Evita ser parte de esa estadística!</p>
+Aprender de finanzas personales no es solo para “gente con plata”, sino precisamente para quienes quieren aprender a construirla.
+                        </p>
 
         <div class="practica">
           <h2>Práctica recomendada:</h2>
-          <p>✅ Práctica recomendada: “Organiza tus finanzas en 3 pasos”
-🎯 Objetivo:
-Aplicar lo aprendido en el curso para conocer tus finanzas personales y crear tu primer presupuesto.
+          <p>1. Crea un registro de tus gastos: Durante un mes, anota todo lo que gastas, incluso los montos pequeños. Esto te mostrará en qué se va tu dinero sin que te des cuenta.
 
-📋 Instrucciones:
-Haz tu fotografía financiera actual
+2. Haz un presupuesto personal sencillo: Establece cuánto ganas (aunque sea una mesada) y decide cuánto vas a gastar en cosas necesarias, cuánto puedes ahorrar y cuánto puedes darte como gusto.
 
-Escribe en una hoja:
+3. Define una meta de ahorro concreta: Por ejemplo, ahorrar $50.000 al mes durante 6 meses para comprar algo que te motive. No importa el monto, lo importante es el hábito.
 
-• ¿Cuánto dinero recibes al mes?
+4. Aprende a decir no: Si algo no está dentro de tu presupuesto, no lo compres. Aprende a priorizar lo que realmente necesitas sobre lo que solo deseas por impulso o moda.
 
-• ¿En qué lo gastas normalmente?
-
-• ¿Tienes algún ahorro o deuda?
-
-Registra tus gastos por 3 días
-
-Anota todo lo que gastes, por pequeño que sea. Al final, separa los gastos en:
-
-• Necesarios (transporte, comida, datos)
-
-• No necesarios (antojitos, salidas, compras impulsivas)
-
-Crea tu primer presupuesto simple
-
-Con base en lo anterior, haz esto:
-
-• Ingreso total mensual: __________
-
-• Gastos fijos aproximados: _______
-
-• Gastos variables: _______________
-
-• ¿Cuánto puedes ahorrar al mes?: ____
-
-📌 Resultado:
-Terminarás esta práctica con una visión más clara de cómo usas tu dinero y cómo empezar a organizarlo.
+5. Investiga opciones de ahorro o inversión para jóvenes: Existen cuentas bancarias, billeteras digitales y otras plataformas que te permiten empezar con montos muy bajos y aprender mientras aplicas.
                             </p>
         </div>
       </section>
+
+     <!-- Botón Finalizar -->
+      <div class="finalizar-curso">
+        <button type="button" onclick="finalizarCurso()" id="finalizarBtn">Finalizar</button>
+      </div>
+      
     </div>
 </form>
 
       <footer>
         <p>&copy; 2025 Red de Educación Financiera. MyD.</p>
-        <div class="social-icons">
-          <a href="#" aria-label="Instagram">Instagram</a>
-          <a href="#" aria-label="Facebook">Facebook</a>
-          <a href="#" aria-label="LinkedIn">LinkedIn</a>
-        </div>
       </footer>
    
-
-  <script src="../../public/js/leccion1.js"></script>
+  <script src="../../public/js/indexCursos.js"></script>
+  <script src="../../public/js/ocultarPanelAdmin.js"></script>
+  <script src="../../public/js/finalizarLeccion.js"></script>
+    <script src="../../public/js/ocultarEditar.js"></script>
 </body>
 
 </html>

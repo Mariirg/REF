@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Editar Lección</title>
+  <link rel="stylesheet" href="../public/css/editarLeccion.css">
+  <link rel="icon" href="../public/img/logo22.png" sizes="32x32" type="image/png">
+</head>
+<body>
+    <div class="container">
+      <h1>Editar Lección</h1>
+      <form id="actualizarLeccionForm" enctype="multipart/form-data">
+        <input type="hidden" value="IdCurso" id="IdCurso">
+        <input type="hidden" value="IdLeccion" id="IdLeccion">
+  
+        <label for="titulo">Título de la Lección:</label>
+        <input type="text" id="titulo" name="TituloLeccion" required>
+  
+        <label for="introLeccion">Introducción de la Lección:</label>
+        <textarea id="introLeccion" name="IntroLeccion" rows="4" required></textarea>
+  
+        <label for="introCurso">Introducción del Curso:</label>
+        <textarea id="introCurso" name="IntroCurso" rows="6" required></textarea>
+  
+        <label for="definicion">¿Qué es?</label>
+        <textarea id="definicion" name="Definicion" rows="6" required></textarea>
+  
+        <label for="img1">Imagen 1:</label>
+        <input type="file" id="img1" name="img1" accept="image/*">
+        <div class="imagen-preview" id="preview1">
+          <img src="" id="urlImg1" alt="Vista previa Imagen 1">
+        </div>
+  
+        <label for="img2">Imagen 2:</label>
+        <input type="file" id="img2" name="img2" accept="image/*">
+        <div class="imagen-preview" id="preview2">
+          <img src="" id="urlImg2" alt="Vista previa Imagen 2">
+        </div>
+  
+        <label for="importancia">¿Por qué es importante?</label>
+        <textarea id="importancia" name="Importancia" rows="6" required></textarea>
+  
+        <label for="practica">Práctica recomendada:</label>
+        <textarea id="practica" name="Practica" rows="8" required></textarea>
+  
+        <button type="submit">Guardar Cambios</button>
+        <button type="button" onclick="volver()">Cancelar</button>
+      </form>
+    </div>
+
+  <script src="../public/js/editarLeccion.js"></script>
+</body>
+</html>

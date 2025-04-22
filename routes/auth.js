@@ -4,8 +4,11 @@ const {
     loginUsuario,
     logoutUsuario,
     obtenerPerfilUsuario,
-    actualizarPerfilUsuario
+    solicitarRecuperacion,
+    verificarCodigoRecuperacion,
+    cambiarContrasena
 } = require("../controllers/authcontroller");
+
 const { verificarToken, verificarAdmin } = require("../middleware/auth");
 
 const router = express.Router();
@@ -15,13 +18,21 @@ router.post("/registro", registroUsuario);
 router.post("/login", loginUsuario);
 router.post("/logout", logoutUsuario);
 
-// 🔹 Rutas de perfil de usuario (requieren autenticación)
-router.get("/perfil", verificarToken, obtenerPerfilUsuario);  // Obtener perfil del usuario
-router.put("/perfil", verificarToken, actualizarPerfilUsuario); // Actualizar perfil del usuario
+// 🔹 Rutas de recuperación de contraseña 
+router.post("/recuperar", solicitarRecuperacion);
+router.post("/verificar", verificarCodigoRecuperacion);
+router.post("/cambiar-contrasena", cambiarContrasena);
 
-// 🔹 Rutas de administrador (protegidas)
+// 🔹 Rutas de perfil de usuario
+router.get("/perfil", verificarToken, obtenerPerfilUsuario);
+
+// 🔹 Rutas de administrador
 router.get("/admin/dashboard", verificarToken, verificarAdmin, (req, res) => {
     res.json({ mensaje: "Bienvenido al panel de administrador" });
 });
+
+
+
+
 
 module.exports = router;

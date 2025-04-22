@@ -51,7 +51,9 @@ const getUsuariosActivos = async (req, res) => {
     console.error("❌ Error al obtener usuarios activos:", error.message);
     res.status(500).json({ error: "Error al obtener usuarios activos" });
   }
+
 };
+
 
 module.exports = {
   getUsuarioById,

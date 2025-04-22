@@ -1,32 +1,41 @@
-const { BlobServiceClient } = require("@azure/storage-blob");
+const cloudinary = require("cloudinary").v2;
 const { v4: uuidv4 } = require("uuid");
-require("dotenv").config(); // Asegúrate de tener tu .env con la cadena
+require("dotenv").config(); // Asegúrate de tener tu .env con la configuración de Cloudinary
 
-const AZURE_CONNECTION_STRING = process.env.AZURE_STORAGE_CONNECTION_STRING;
-const CONTAINER_NAME = "usuario"; // debe existir en tu cuenta de Azure
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-const subirImagenAzure = async (req, res) => {
+const subirImagenCloudinary = async (req, res) => {
     try {
-        if (!req.file) return res.status(400).json({ error: "No se recibió ninguna imagen." });
+        if (!req.file) {
+            return res.status(400).json({ error: "No se recibió ninguna imagen." });
+        }
 
-        const blobServiceClient = BlobServiceClient.fromConnectionString(AZURE_CONNECTION_STRING);
-        const containerClient = blobServiceClient.getContainerClient(CONTAINER_NAME);
+        const result = await new Promise((resolve, reject) => {
+            const uploadStream = cloudinary.uploader.upload_stream({
+                public_id: uuidv4(), // Usamos uuid para un nombre único
+                resource_type: "auto", // Detecta el tipo de archivo automáticamente
+            }, (error, result) => {
+                if (error) {
+                    reject(new Error("Error al subir imagen a Cloudinary"));
+                }
+                resolve(result);
+            });
 
-        const extension = req.file.originalname.split(".").pop();
-        const blobName = `${uuidv4()}.${extension}`;
-        const blockBlobClient = containerClient.getBlockBlobClient(blobName);
-
-        await blockBlobClient.uploadData(req.file.buffer, {
-            blobHTTPHeaders: { blobContentType: req.file.mimetype },
+            // Usamos pipe para pasar el archivo directamente desde el buffer en memoria
+            uploadStream.end(req.file.buffer);
         });
 
-        const imageUrl = blockBlobClient.url;
-
+        // Obtener la URL de la imagen subida
+        const imageUrl = result.secure_url;
         res.status(200).json({ imageUrl });
     } catch (err) {
-        console.error("❌ Error subiendo imagen a Azure:", err.message);
-        res.status(500).json({ error: "Error al subir imagen a Azure." });
+        console.error("❌ Error subiendo imagen a Cloudinary:", err.message);
+        res.status(500).json({ error: "Error al subir imagen a Cloudinary." });
     }
 };
 
-module.exports = { subirImagenAzure };
+module.exports = { subirImagenCloudinary };  // Asegúrate de exportarlo correctamente

@@ -1,4 +1,5 @@
 
+  
   <!DOCTYPE html>
 <html lang="es">
 
@@ -13,17 +14,47 @@
 </head>
 
 <body>
-  <form class="form-container">
-    <header>
-      <a href="/indexCursos.html" class="logo">REF</a>
-      <nav class="navbar">
-        <a href="/indexCursos.html">Inicio</a>
-        <button type="button" id="showProfileBtn">Perfil</button>
-      </nav>
-    </header>
 
+   <header class="header">
+    <a href="/indexCursos.html" class="logo">REF</a>
+    <nav class="navbar">
+      <a href="/indexCursos.html">Inicio</a>
+      <button id="showProfileBtn">Perfil</button>
+      <a href="/indexAdmin.html" id="adminPanelLink">Panel Admin</a>
+    </nav>
+
+  </header>
+<!-- Fondo oscuro que cubre toda la pantalla -->
+ <div id="overlay"></div>
+
+  <!-- Sección de perfil que aparecerá al hacer clic en el botón -->
+  <div id="perfilSection">
+    <div class="card">
+      <button class="logout-btn" id="cerrarSesion">Cerrar Sesión</button>
+      <div class="profile-pic"></div>
+      <div class="bottom">
+        <div class="content">
+          <span class="name">My Name</span>
+          <span class="about-me">Lorem ipsum dolor sit amet consectetur adipisicinFcls
+          </span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progreso-usuario"></div>
+          </div>
+        </div>
+
+        <div class="bottom-bottom">
+          <button class="button" id="editProfileBtn">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
     <div class="container">
       <section class="leccion" id="leccion1">
+     <button class="btn-editar hidden" onclick="editar()">Editar lección</button>
+      <br>
         <h1 class="titulo">Introducción a la Contabilidad Financiera</h1>
         <p>   Aprende los principios fundamentales de la contabilidad, desde registrar transacciones hasta comprender cómo se estructuran los estados financieros.
                         </p>
@@ -33,7 +64,7 @@
         <h2>Introducción al Curso</h2>
         <p>Este curso es tu primer paso para entender cómo funciona el lenguaje de los negocios: la contabilidad financiera. Está diseñado para que cualquier persona, sin conocimientos previos, pueda aprender desde cero cómo se registran, organizan e interpretan las transacciones económicas de una organización o persona.
 
-📘 Aprenderás a:
+Aprenderás a:
 
 • Registrar operaciones contables básicas
 • Entender el papel de los activos, pasivos y patrimonio
@@ -46,7 +77,7 @@ Si alguna vez te has preguntado “¿cómo sé si un negocio gana o pierde diner
         <h2 class="subtitulo">¿Qué es?</h2>
         <p>La contabilidad financiera es un sistema que permite registrar, clasificar y resumir todas las operaciones económicas de una entidad para luego presentarlas en informes conocidos como estados financieros.
 
-👉 En otras palabras, es como llevar un diario detallado del dinero:
+En otras palabras, es como llevar un diario detallado del dinero:
 
 • Qué entra (ingresos)
 • Qué sale (gastos)
@@ -57,21 +88,21 @@ Si alguna vez te has preguntado “¿cómo sé si un negocio gana o pierde diner
 Estos registros se hacen siguiendo normas contables para que cualquier persona (inversionistas, bancos, socios o el Estado) pueda entenderlos fácilmente.
                         </p>
 
-       <div class="imagenes-leccion">
+      <div class="imagenes-leccion">
        <figure>
-          <img src="https://ref2025.blob.core.windows.net/curso/7b30e80b-fdf7-4aa7-a7b5-5ce9a5d95649.jpg" alt="Imagen explicativa 1" />
+          <img src="https://res.cloudinary.com/dwcydursu/image/upload/v1745352874/lecciones/leccion_28_img1.avif" alt="Imagen explicativa 1" />
           <figcaption>Ilustración introductoria de la lección</figcaption>
         </figure>
             <figure>
-          <img src="https://ref2025.blob.core.windows.net/curso/b7c9e758-edc4-4ef8-83f8-622102cb6ffc.avif" alt="Imagen explicativa 1" />
+          <img src="https://res.cloudinary.com/dwcydursu/image/upload/v1745352876/lecciones/leccion_28_img2.jpg" alt="Imagen explicativa 1" />
           <figcaption>Ilustración introductoria de la lección</figcaption>
         </figure>
-      </div>
-            
+            </div>
 
         <h3 class="subtitulo">¿Por qué es importante?</h3>
         <p>Porque sin contabilidad no sabríamos si un negocio es rentable o está en peligro.
-📊 La contabilidad financiera permite:
+
+ La contabilidad financiera permite:
 
 • Tener claridad sobre la salud económica de un negocio
 • Tomar decisiones informadas: ¿invertir, ahorrar, o recortar gastos?
@@ -83,9 +114,9 @@ Incluso si no tienes un negocio, saber contabilidad te ayuda a interpretar tu pr
 
         <div class="practica">
           <h2>Práctica recomendada:</h2>
-          <p>🎯 Objetivo: Aprender a clasificar activos, pasivos y patrimonio en un balance básico.
+          <p>• Objetivo: Aprender a clasificar activos, pasivos y patrimonio en un balance básico.
 
-📋 Instrucciones:
+• Instrucciones:
 
 1. En una hoja, dibuja tres columnas:
 
@@ -98,26 +129,29 @@ Incluso si no tienes un negocio, saber contabilidad te ayuda a interpretar tu pr
 3. Aplica esta fórmula:
 Activos = Pasivos + Patrimonio
 
-📌 Resultado:
+• Resultado:
 Verás con claridad tu situación financiera actual en términos contables. ¡Es tu primer paso para pensar como un contador o contadora!
 
                             </p>
         </div>
       </section>
+
+     <!-- Botón Finalizar -->
+      <div class="finalizar-curso">
+        <button type="button" onclick="finalizarCurso()" id="finalizarBtn">Finalizar</button>
+      </div>
+      
     </div>
 </form>
 
       <footer>
         <p>&copy; 2025 Red de Educación Financiera. MyD.</p>
-        <div class="social-icons">
-          <a href="#" aria-label="Instagram">Instagram</a>
-          <a href="#" aria-label="Facebook">Facebook</a>
-          <a href="#" aria-label="LinkedIn">LinkedIn</a>
-        </div>
       </footer>
    
-
-  <script src="../../public/js/leccion1.js"></script>
+  <script src="../../public/js/indexCursos.js"></script>
+  <script src="../../public/js/ocultarPanelAdmin.js"></script>
+  <script src="../../public/js/finalizarLeccion.js"></script>
+    <script src="../../public/js/ocultarEditar.js"></script>
 </body>
 
 </html>

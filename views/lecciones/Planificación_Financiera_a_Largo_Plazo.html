@@ -1,4 +1,5 @@
 
+  
   <!DOCTYPE html>
 <html lang="es">
 
@@ -13,17 +14,47 @@
 </head>
 
 <body>
-  <form class="form-container">
-    <header>
-      <a href="../indexCursos.html" class="logo">REF</a>
-      <nav class="navbar">
-        <a href="../indexCursos.html">Inicio</a>
-        <button type="button" id="showProfileBtn">Perfil</button>
-      </nav>
-    </header>
 
+   <header class="header">
+    <a href="/indexCursos.html" class="logo">REF</a>
+    <nav class="navbar">
+      <a href="/indexCursos.html">Inicio</a>
+      <button id="showProfileBtn">Perfil</button>
+      <a href="/indexAdmin.html" id="adminPanelLink">Panel Admin</a>
+    </nav>
+
+  </header>
+<!-- Fondo oscuro que cubre toda la pantalla -->
+ <div id="overlay"></div>
+
+  <!-- Sección de perfil que aparecerá al hacer clic en el botón -->
+  <div id="perfilSection">
+    <div class="card">
+      <button class="logout-btn" id="cerrarSesion">Cerrar Sesión</button>
+      <div class="profile-pic"></div>
+      <div class="bottom">
+        <div class="content">
+          <span class="name">My Name</span>
+          <span class="about-me">Lorem ipsum dolor sit amet consectetur adipisicinFcls
+          </span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progreso-usuario"></div>
+          </div>
+        </div>
+
+        <div class="bottom-bottom">
+          <button class="button" id="editProfileBtn">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
     <div class="container">
       <section class="leccion" id="leccion1">
+     <button class="btn-editar hidden" onclick="editar()">Editar lección</button>
+      <br>
         <h1 class="titulo">Planificación Financiera a Largo Plazo</h1>
         <p>        Aprenderás a planificar tus finanzas de manera estratégica para lograr tus metas a largo plazo.        </p>
       </section>
@@ -52,39 +83,37 @@ Ejemplos de metas a largo plazo:
 
 Este tipo de planificación requiere disciplina, visión de futuro y herramientas adecuadas para seguir tu progreso.
                         </p>
-                        
-                        
+
       <div class="imagenes-leccion">
        <figure>
-          <img src="https://ref2025.blob.core.windows.net/curso/5c4116bf-0cd8-4c6c-ab24-c03b94af905c.jpg" alt="Imagen explicativa 1" />
+          <img src="https://res.cloudinary.com/dwcydursu/image/upload/v1745352734/lecciones/leccion_27_img1.avif" alt="Imagen explicativa 1" />
           <figcaption>Ilustración introductoria de la lección</figcaption>
         </figure>
             <figure>
-          <img src="https://ref2025.blob.core.windows.net/curso/fe7c9cec-c2f4-4eeb-9cb6-982b05408a1f.jpg" alt="Imagen explicativa 1" />
+          <img src="https://res.cloudinary.com/dwcydursu/image/upload/v1745352735/lecciones/leccion_27_img2.jpg" alt="Imagen explicativa 1" />
           <figcaption>Ilustración introductoria de la lección</figcaption>
         </figure>
-      </div>
-            
+            </div>
 
         <h3 class="subtitulo">¿Por qué es importante?</h3>
         <p>Porque el tiempo es tu mejor aliado si sabes usarlo bien.
 
 Una buena planificación a largo plazo te ayuda a:
-📌 Tener claridad sobre lo que quieres lograr con tu dinero
-📌 Evitar decisiones impulsivas que afecten tu futuro
-📌 Aprovechar el poder del interés compuesto (¡el dinero también trabaja para ti!)
-📌 Estar preparado para emergencias sin sacrificar tus objetivos
-📌 Tener paz mental al saber que vas por buen camino
+• Tener claridad sobre lo que quieres lograr con tu dinero
+• Evitar decisiones impulsivas que afecten tu futuro
+• Aprovechar el poder del interés compuesto (¡el dinero también trabaja para ti!)
+• Estar preparado para emergencias sin sacrificar tus objetivos
+• Tener paz mental al saber que vas por buen camino
 
 Dato: Muchas personas llegan a la adultez sin un plan financiero y terminan trabajando más años de los necesarios o sin lograr sus metas personales. ¡Planear desde joven marca la diferencia!
                         </p>
 
         <div class="practica">
           <h2>Práctica recomendada:</h2>
-          <p>🎯 Objetivo:
+          <p>• Objetivo:
 Aplicar lo aprendido para diseñar un plan personal que te acerque a una gran meta financiera.
 
-📋 Instrucciones:
+• Instrucciones:
 
 Define tu meta a largo plazo
 • ¿Qué te gustaría lograr en 5 años? (Ej. comprar una moto, estudiar fuera, ahorrar para una vivienda, etc.)
@@ -105,24 +134,27 @@ Establece acciones concretas
 • Eliminar gastos innecesarios
 • Buscar ingresos extras o invertir
 
-📌 Resultado:
+• Resultado:
 Al finalizar, tendrás un plan escrito, realista y medible para comenzar a construir tu futuro financiero desde hoy.</p>
         </div>
       </section>
+
+     <!-- Botón Finalizar -->
+      <div class="finalizar-curso">
+        <button type="button" onclick="finalizarCurso()" id="finalizarBtn">Finalizar</button>
+      </div>
+      
     </div>
 </form>
 
       <footer>
         <p>&copy; 2025 Red de Educación Financiera. MyD.</p>
-        <div class="social-icons">
-          <a href="#" aria-label="Instagram">Instagram</a>
-          <a href="#" aria-label="Facebook">Facebook</a>
-          <a href="#" aria-label="LinkedIn">LinkedIn</a>
-        </div>
       </footer>
    
-
-  <script src="../../public/js/leccion1.js"></script>
+  <script src="../../public/js/indexCursos.js"></script>
+  <script src="../../public/js/ocultarPanelAdmin.js"></script>
+  <script src="../../public/js/finalizarLeccion.js"></script>
+    <script src="../../public/js/ocultarEditar.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,85 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-color);
+  margin: 0;
+  padding: 2rem;
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(126, 87, 194, 0.1);
+  border: 2px solid #e0d2f5; /* 💜 bordecito sutil morado claro */
+}
+
+h1 {
+  text-align: center;
+  color: var(--main-color);
+  border-bottom: 2px solid #c3a5f5; /* 💜 cambio de color de la línea */
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  text-shadow: 1px 1px 2px #e0d2f5; /* 💜 sombrita linda */
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #6a4aa3; /* 💜 un morado definido */
+}
+
+input[type="text"],
+input[type="url"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: 1px solid #c8b8e6; /* 💜 bordecito */
+  background-color: #f4f1fa;
+  font-size: 1rem;
+  color: var(--text-color);
+  box-shadow: 0 0 5px rgba(155, 128, 205, 0.1); /* 💜 sombrita suave */
+}
+
+textarea {
+  resize: vertical;
+}
+
+.imagen-preview {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.imagen-preview img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(126, 87, 194, 0.15);
+  margin-top: 10px;
+  border: 2px solid #d7c4f3; /* 💜 marco de la imagen */
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 2rem;
+  font-size: 1rem;
+  background-color: #6a4aa3;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(106, 74, 163, 0.2); /* 💜 sombrita morada */
+}
+
+button:hover {
+  background-color: #5c3c94; /* 💜 un poco más oscuro */
+  transform: scale(1.02); /* 💜 efecto suave al pasar el mouse */
+}

@@ -52,10 +52,29 @@ function validarCamposPermitidos(req, res, next) {
 
     next();F
 }
+function traeridUsuario(req, res, next) {
+    console.log("🔍 Headers recibidos:", req.headers);
+    const token = req.headers.authorization?.split(' ')[1]; 
+    console.log("🪪 Token extraído:", token);
+  
+    if (!token) return res.status(401).json({ message: 'Token no proporcionado' });
+  
+    try {
+      const decoded = jwt.verify(token, 'secreto');
+      console.log("✅ Usuario decodificado:", decoded);
+      req.IdUsuario = decoded.id;
+      next();
+    } catch (err) {
+      console.error("❌ Error al verificar token:", err.message);
+      res.status(401).json({ message: 'Token inválido' });
+    }
+  }
+  
 
 module.exports = {
     verificarToken,
     verificarAdmin,
     validarCamposPermitidos,
-    blacklist
+    blacklist,
+    traeridUsuario
 };

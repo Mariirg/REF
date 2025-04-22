@@ -43,15 +43,18 @@ if (loginForm) {
             alert("Inicio de sesión exitoso");
             localStorage.setItem("token", data.token);
             localStorage.setItem("rol", data.rol);
+            localStorage.setItem("idCurso", data.idCurso);
+
 
             console.log("Respuesta del servidor:", data);
             console.log("Rol recibido:", data.rol);
+            console.log("Usuario recibido:", data.idUsuario);
 
-            if (data.rol === "Administrador") {
-                window.location.href = "indexAdmin.html"; // Redirige a la vista de admin
+            if (data.rol === "admin") {
+                window.location.href = "indexAdmin.html";
             } else {
-                window.location.href = "indexCursos.html"; // Redirige a la vista normal
-            }
+                window.location.href = "indexCursos.html";
+            }            
 
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
@@ -87,7 +90,7 @@ if (registerForm) {
 
             alert("Registro exitoso");
             
-            if (data.rol === "Administrador") {
+            if (data.rol === "admin") {
                 window.location.href = "indexAdmin.html"; // Redirige a la vista de admin
             } else {
                 window.location.href = "indexCursos.html"; // Redirige a la vista normal

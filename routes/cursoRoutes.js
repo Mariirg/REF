@@ -3,9 +3,10 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const upload = multer(); // usando almacenamiento en memoria (buffer)
+const upload = multer(); 
+const {traeridUsuario} = require('../middleware/auth');
 
-const { guardarCurso, mostrarCursos } = require('../controllers/cursoController');
+const { guardarCurso, mostrarCursos, finalizarCurso, actualizarCurso, eliminarCurso } = require('../controllers/cursoController');
 
 // Ruta para crear un nuevo curso con imágenes
 router.post("/", upload.fields([
@@ -18,5 +19,12 @@ guardarCurso);
 
 // Ruta para mostrar todos los cursos
 router.get('/', mostrarCursos);
+
+router.post('/finalizar/:IdCurso', traeridUsuario, finalizarCurso);
+
+router.put("/actualizar/:IdCurso", upload.fields([{ name: "imagen" }]), actualizarCurso);
+
+router.delete("/eliminar/:IdCurso/:NombreCurso", eliminarCurso);
+
 
 module.exports = router;

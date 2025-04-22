@@ -94,38 +94,6 @@ body {
     border: none;
 }
 
-/* --- Ajustes Responsivos --- */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        gap: 10px;
-        padding: 1rem;
-        height: auto;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .navbar {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        display: none;
-    }
-
-    .navbar.active {
-        display: flex;
-    }
-
-    .navbar a {
-        margin: 10px 0;
-        font-size: 1.6rem;
-    }
-}
-
-
-
 .navbar-links {
     display: none;
     flex-direction: column;
@@ -275,17 +243,8 @@ footer .social-icons a {
     transition: color 0.3s;
 }
 
-
-
-/* --- Media Queries for Responsiveness --- */
-
 /* Tablets and small devices */
-@media (max-width: 768px) {
-    .header {
-        padding: 10px 15px;
-        flex-direction: column; /* Ajusta header a columna */
-        gap: 15px;
-    }
+@media (max-width: 769px) {
 
     .logo-container span {
         font-size: 1.5rem;
@@ -325,33 +284,53 @@ footer .social-icons a {
 
 /* Mobile phones */
 @media (max-width: 480px) {
-    .hero h1 {
-        font-size: 1.8rem;
-    }
 
-    .hero p {
-        font-size: 0.9rem;
-    }
+  .logo-container span {
+      font-size: 1.5rem;
+  }
 
-    .boton-iniciar-sesion {
-        padding: 8px 20px;
-        font-size: 0.8rem;
-    }
+  .nav {
+      justify-content: center;
+      gap: 15px;
+  }
 
-    .curso {
-        width: 100%; /* Ocupa todo el ancho disponible */
-    }
+  .hero h1 {
+      font-size: 1.8rem;
+  }
 
-    .seccion-cursos h2 {
-        font-size: 1.5rem;
-    }
+  .hero p {
+      font-size: 0.9rem;
+  }
 
+  .boton-iniciar-sesion {
+      padding: 8px 20px;
+      font-size: 0.8rem;
+  }
 
+  .curso {
+      width: 100%;
+      padding: 15px;
+  }
+
+  .curso h3 {
+      font-size: 1.1rem;
+  }
+
+  .curso p {
+      font-size: 0.8rem;
+  }
+
+  /* Asegurarse que los elementos como Inicio, Perfil, Perfil Admin se vean */
+  .inicio, .perfil, .perfil-admin {
+      display: block; /* Asegurarse que se muestren */
+      width: 100%; /* Ocupan todo el ancho disponible */
+      text-align: center; /* Centrado si es necesario */
+  }
+
+  .seccion-cursos h2 {
+      font-size: 1.5rem;
+  }
 }
-
-
-
-
 
 #showProfileBtn{
   background: transparent;
@@ -367,7 +346,7 @@ footer .social-icons a {
 
 }
 
-#btnshowProfileBtn:hover {
+#showProfileBtn:hover {
   color: var(--highlight-color);
   text-shadow: 0 0 8px #7d3cff;
 }
@@ -731,4 +710,36 @@ color: white;
   font-weight: bold;
   font-size: 0.8rem;
   line-height: 8px; /* Centrar verticalmente */
+}
+
+.btn-curso {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  margin: 8px 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.btn-editar {
+  background-color: transparent; /* lila pastel */
+  color: #4b0082;
+  border: 2px solid #a14ac6;
+  margin-top: 35px; 
+}
+
+.btn-editar:hover {
+  background-color: #d1a8ff;
+}
+
+.btn-eliminar {
+  background-color: transparent; /* rosado pastel */
+  color: #800000;
+  border: 2px solid #800000
+}
+
+.btn-eliminar:hover {
+  background-color: #ff8686;
 }
