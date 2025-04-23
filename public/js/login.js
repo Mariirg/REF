@@ -42,7 +42,7 @@ if (loginForm) {
 
             Swal.fire({
                 icon: 'success',
-                title: '¡Bienvenida de nuevo!',
+                title: '¡Bienvenido/a de nuevo!',
                 text: 'Inicio de sesión exitoso',
                 showConfirmButton: false,
                 timer: 2000,
