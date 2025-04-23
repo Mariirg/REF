@@ -1258,7 +1258,10 @@ body {
   text-align: left;
   font-size: 14px;
   color: #444;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
+
 
 .modal-content ul li strong {
   color: #6c63ff;
@@ -1283,6 +1286,29 @@ body {
   background-color: #4e45c5;
 }
 
+/* Responsive */
+@media (max-width: 480px) {
+  .modal-content h2 {
+    font-size: 20px;
+  }
+
+  .modal-content h3 {
+    font-size: 18px;
+  }
+
+  .modal-content p {
+    font-size: 14px;
+  }
+
+  .modal-content ul li {
+    font-size: 13px;
+  }
+
+  .modal-content button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
 
 /* ========================= */
 /*    SCROLLBAR EN MODALES   */
@@ -1814,22 +1840,6 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.card .bottom .bottom-bottom .social-links-container {
-  display: flex;
-  gap: 1rem;
-}
-
-.card .bottom .bottom-bottom .social-links-container svg {
-  height: 20px;
-  fill: white;
-  filter: drop-shadow(0 5px 5px rgba(165, 132, 130, 0.1333333333));
-}
-
-.card .bottom .bottom-bottom .social-links-container svg:hover {
-  fill: #cb56f5;
-  transform: scale(1.2);
 }
 
 .card .bottom .bottom-bottom .button {
