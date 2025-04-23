@@ -106,6 +106,8 @@ const generarTemplateLeccion = (titulo, contenido) => {
   <script src="../../public/js/ocultarPanelAdmin.js"></script>
   <script src="../../public/js/finalizarLeccion.js"></script>
     <script src="../../public/js/ocultarEditar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

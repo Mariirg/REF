@@ -1,12 +1,10 @@
 const params = new URLSearchParams(window.location.search);
 const IdCurso = params.get("IdCurso");
 
-
-function finalizarCurso(){
+function finalizarCurso() {
 
     console.log("Anjhell lindo");
     console.log(localStorage.getItem('token'));
-
 
     fetch(`/curso/finalizar/${IdCurso}`, {
         method: 'POST',
@@ -18,9 +16,13 @@ function finalizarCurso(){
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          alert('¡Curso finalizado!');
-          window.location.href = "/indexCursos.html"
+          Swal.fire({
+              title: '¡Curso finalizado!',
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+          }).then(() => {
+              window.location.href = "/indexCursos.html";
+          });
         }
       });
-    
 }

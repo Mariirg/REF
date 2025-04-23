@@ -3,7 +3,14 @@ document.getElementById("btn-solicitar-codigo").addEventListener("click", functi
     const correo = document.getElementById("correo").value;
 
     if (!correo) {
-        alert("Por favor ingresa tu correo.");
+        Swal.fire({
+            icon: 'warning',
+            title: 'Por favor ingresa tu correo.',
+            showConfirmButton: false,
+            timer: 2000,
+            background: '#fff',
+            color: '#8b5cf6'
+        });
         return;
     }
 
@@ -16,11 +23,30 @@ document.getElementById("btn-solicitar-codigo").addEventListener("click", functi
     .then(data => {
         console.log(data);  // Verifica qué estamos recibiendo del servidor
         if (data.mensaje === "Código enviado al correo") {
-            console.log("Código enviado con éxito, redirigiendo...");
-            window.location.href = '/verificar';  
+            Swal.fire({
+                icon: 'success',
+                title: 'Código enviado con éxito.',
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                window.location.href = '/verificar';  
+            });
         } else {
-            alert(data.mensaje);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.mensaje,
+                background: '#fff',
+                color: '#8b5cf6'
+            });
         }
     })
-    .catch(error => alert("Hubo un problema con la solicitud."));
+    .catch(error => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema con la solicitud.',
+            background: '#fff',
+            color: '#8b5cf6'
+        });
+    });
 });

@@ -181,9 +181,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const IdUsuario = getUserIdFromToken();
     if (!IdUsuario) {
-        alert("No se ha encontrado un usuario válido. Redirigiendo a la página de inicio...");
+        Swal.fire({
+            icon: 'warning',
+            title: 'No se ha encontrado un usuario válido.',
+            text: 'Redirigiendo a la página de inicio...',
+            showConfirmButton: false,
+            timer: 2000,
+            background: '#fff',
+            color: '#8b5cf6'
+          }).then(() => {
         window.location.href = "/index.html";
-        return;
+        return;})
     }
 
     async function cargarPerfil() {
@@ -215,8 +223,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function guardarCambiosEnBD(NombreUsuario, Descripcion, FotoPerfil) {
         if (!NombreUsuario?.trim() || !Descripcion?.trim()) {
-            alert(" Nombre y descripción son obligatorios.");
-            return;
+            Swal.fire({
+                icon: 'warning',
+                title: 'Nombre y Descripcion son obligatorios',
+                showConfirmButton: false,
+                timer: 2000,
+                background: '#fff',
+                color: '#8b5cf6'
+              }).then(() => {
+            return; 
+              })
         }
 
         const datosActualizados = {
@@ -251,30 +267,81 @@ document.addEventListener("DOMContentLoaded", () => {
             if (profilePic) profilePic.style.backgroundImage = `url(${FotoPerfil})`;
 
             console.log(" Cambios guardados correctamente.");
-            alert(" Los cambios se han guardado correctamente.");
+            Swal.fire({
+                icon: 'success',
+                title: 'Los cambios se han guardado correctamente',
+                showConfirmButton: 'Ok',
+                timer: 2000,
+                background: '#fff',
+                color: '#8b5cf6'
+              })
         } catch (error) {
             console.error(" Error al guardar en la BD:", error.message);
             alert(` Error al guardar: ${error.message}`);
         }
     }
 
-    editButton?.addEventListener("click", () => {
+    editButton?.addEventListener("click", async () => {
         const currentName = nameSpan.textContent;
         const currentAbout = aboutSpan.textContent;
-
-        const newName = prompt("Ingrese su nombre:", currentName);
-        const newAbout = prompt("Ingrese información sobre usted:", currentAbout);
-
+    
+        // Usando Swal para ingresar el nombre
+        const { value: newName } = await Swal.fire({
+            title: 'Ingrese su nombre',
+            input: 'text',
+            inputValue: currentName,
+            inputPlaceholder: 'Nombre',
+            showCancelButton: true,
+            confirmButtonText: 'Guardar',
+            cancelButtonText: 'Cancelar',
+            background: '#fff',
+            color: '#8b5cf6',
+            inputValidator: (value) => {
+                if (!value.trim()) {
+                    return 'El nombre no puede estar vacío';
+                }
+            }
+        });
+    
+        if (newName === undefined) return; // Si el usuario cancela
+    
+        // Usando Swal para ingresar información sobre sí mismo
+        const { value: newAbout } = await Swal.fire({
+            title: 'Ingrese información sobre usted',
+            input: 'textarea',
+            inputValue: currentAbout,
+            inputPlaceholder: 'Acerca de usted',
+            showCancelButton: true,
+            confirmButtonText: 'Guardar',
+            cancelButtonText: 'Cancelar',
+            background: '#fff',
+            color: '#8b5cf6',
+            inputValidator: (value) => {
+                if (!value.trim()) {
+                    return 'La información no puede estar vacía';
+                }
+            }
+        });
+    
+        if (newAbout === undefined) return; // Si el usuario cancela
+    
         const fondo = profilePic.style.backgroundImage;
         const fondoLimpio = fondo.replace(/^url\(["']?/, "").replace(/["']?\)$/, "");
-
+    
         if (newName?.trim() && newAbout?.trim()) {
             guardarCambiosEnBD(newName.trim(), newAbout.trim(), fondoLimpio);
         } else {
-            alert(" Por favor, completa todos los campos correctamente.");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Por favor completa todos los campos correctamente',
+                showConfirmButton: false,
+                timer: 2000,
+                background: '#fff',
+                color: '#8b5cf6'
+            });
         }
     });
-
+    
 
     profilePic?.addEventListener("click", () => {
         const fileInput = document.createElement("input");
@@ -284,8 +351,15 @@ document.addEventListener("DOMContentLoaded", () => {
         fileInput.addEventListener("change", async (event) => {
             const file = event.target.files[0];
             if (!file) {
-                alert(" Por favor, selecciona una imagen válida.");
-                return;
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Por favor selecciona una imagen válida',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    background: '#fff',
+                    color: '#8b5cf6'
+                  }).then(() => {
+                return; })
             }
 
             const formData = new FormData();
@@ -360,9 +434,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     cerrarSesionBtn?.addEventListener("click", () => {
+        Swal.fire({
+            icon: 'success',
+            title: '¡Esperamos verte pronto!',
+            text: 'Cerrar sesión exitoso',
+            showConfirmButton: false,
+            timer: 2000,
+            background: '#fff',
+            color: '#8b5cf6'
+          }).then(() => { 
         localStorage.clear();
         sessionStorage.clear();
         window.location.href = "/index.html";
+          });
     });
 
     async function cargarLecciones() {

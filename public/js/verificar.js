@@ -21,17 +21,35 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.mensaje === 'Código válido') {
-                    alert('Código verificado correctamente');
-                    // Redirigir a la página de cambiar contraseña
-                    window.location.href = '/nuevaContrasena'; // Asegúrate de que esta ruta sea la correcta
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Código verificado correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        // Redirigir a la página de cambiar contraseña
+                        window.location.href = '/nuevaContrasena'; // Asegúrate de que esta ruta sea la correcta
+                    });
                 } else {
-                    alert(data.message || 'Hubo un problema con la verificación');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: data.message || 'Hubo un problema con la verificación',
+                        background: '#fff',
+                        color: '#8b5cf6'
+                    });
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Error verificando el código');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error verificando el código',
+                    background: '#fff',
+                    color: '#8b5cf6'
+                });
             });
         });
     }
-}); 
+});

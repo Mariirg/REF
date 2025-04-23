@@ -7,7 +7,14 @@ document.getElementById("btn-cambiar").addEventListener("click", function(event)
 
     // Validar si los campos están vacíos
     if (!correo || !nuevaContrasena) {
-        alert("Por favor, complete todos los campos.");
+        Swal.fire({
+            icon: 'warning',
+            title: 'Por favor, complete todos los campos.',
+            showConfirmButton: false,
+            timer: 2000,
+            background: '#fff',
+            color: '#8b5cf6'
+        });
         return;
     }
 
@@ -25,15 +32,32 @@ document.getElementById("btn-cambiar").addEventListener("click", function(event)
     .then(response => response.json())
     .then(data => {
         if (data.mensaje === "Contraseña actualizada exitosamente") {
-            alert("Contraseña cambiada con éxito.");
-            // Redirigir al login después de cambiar la contraseña
-            window.location.href = '/login'; // Aquí puedes poner la ruta correcta de tu login
+            Swal.fire({
+                icon: 'success',
+                title: 'Contraseña cambiada con éxito.',
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                // Redirigir al login después de cambiar la contraseña
+                window.location.href = '/login'; // Aquí puedes poner la ruta correcta de tu login
+            });
         } else {
-            alert(data.mensaje);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.mensaje,
+                background: '#fff',
+                color: '#8b5cf6'
+            });
         }
     })
     .catch(error => {
         console.error("Error:", error);
-        alert("Hubo un problema con la solicitud.");
+        Swal.fire({
+            icon: 'error',
+            title: 'Hubo un problema con la solicitud.',
+            background: '#fff',
+            color: '#8b5cf6'
+        });
     });
 });

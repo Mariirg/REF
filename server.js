@@ -1,6 +1,3 @@
-// ══════════════════════════════════════
-// 📦 MÓDULOS Y DEPENDENCIAS
-// ══════════════════════════════════════
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -247,7 +244,6 @@ app.put("/api/usuarios/:IdUsuario/rol", async (req, res) => {
     res.status(500).json({ error: "Error interno" });
   }
   
-  app.use('/usuarios', require('./routes/usuariosRoutes'));
 });
 
 

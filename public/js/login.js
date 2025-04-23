@@ -40,21 +40,32 @@ if (loginForm) {
             const data = await response.json();
             if (!response.ok) throw new Error(data.mensaje || "Error al iniciar sesión.");
 
-            alert("Inicio de sesión exitoso");
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("rol", data.rol);
-            localStorage.setItem("idCurso", data.idCurso);
-
-
-            console.log("Respuesta del servidor:", data);
-            console.log("Rol recibido:", data.rol);
-            console.log("Usuario recibido:", data.idUsuario);
-
-            if (data.rol === "admin") {
-                window.location.href = "indexAdmin.html";
-            } else {
-                window.location.href = "indexCursos.html";
-            }            
+            Swal.fire({
+                icon: 'success',
+                title: '¡Bienvenida de nuevo!',
+                text: 'Inicio de sesión exitoso',
+                showConfirmButton: false,
+                timer: 2000,
+                background: '#fff',
+                color: '#8b5cf6'
+              }).then(() => {
+                // Guardar datos en localStorage
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("rol", data.rol);
+                localStorage.setItem("idCurso", data.idCurso);
+              
+                console.log("Respuesta del servidor:", data);
+                console.log("Rol recibido:", data.rol);
+                console.log("Usuario recibido:", data.idUsuario);
+              
+                // Redirigir según el rol
+                if (data.rol === "admin") {
+                  window.location.href = "indexAdmin.html";
+                } else {
+                  window.location.href = "indexCursos.html";
+                }
+              });
+              
 
         } catch (error) {
             console.error("Error al iniciar sesión:", error);
@@ -74,8 +85,16 @@ if (registerForm) {
         const rol = "usuario";
 
         if (!NombreUsuario || !correo || !contrasena) {
-            alert("Por favor, completa todos los campos.");
-            return;
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor llena todos los campos',
+                showConfirmButton: false,
+                timer: 2000,
+                background: '#fff',
+                color: '#8b5cf6'
+              }).then(() => {
+            return; })
         }
 
         try {
@@ -88,14 +107,22 @@ if (registerForm) {
             const data = await response.json();
             if (!response.ok) throw new Error(data.mensaje || "Error en el registro.");
 
-            alert("Registro exitoso");
+            Swal.fire({
+                icon: 'success',
+                title: '¡Bienvenido/a a REF!',
+                text: 'Registro exitoso.',
+                showConfirmButton: false,
+                timer: 2000,
+                background: '#fff',
+                color: '#8b5cf6'
+              }).then(() => {
             
             if (data.rol === "admin") {
                 window.location.href = "indexAdmin.html"; // Redirige a la vista de admin
             } else {
                 window.location.href = "indexCursos.html"; // Redirige a la vista normal
             }
-            
+        })
         } catch (error) {
             console.error("Error al registrar usuario:", error);
             alert(error.message);

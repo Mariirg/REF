@@ -60,14 +60,20 @@ document.addEventListener("DOMContentLoaded", () => {
             return null;
         }
     }
-
     const IdUsuario = getUserIdFromToken();
     if (!IdUsuario) {
-        alert("No se ha encontrado un usuario válido. Redirigiendo a la página de inicio...");
-        window.location.href = "/index.html";
+        Swal.fire({
+            icon: 'warning',
+            title: 'Usuario no válido',
+            text: 'No se ha encontrado un usuario válido. Serás redirigido a la página de inicio...',
+            showConfirmButton: false,
+            timer: 2500
+        }).then(() => {
+            window.location.href = "/index.html";
+        });
         return;
     }
-
+    
     async function cargarPerfil() {
         try {
             const response = await fetch(`http://localhost:3000/api/usuarios/${IdUsuario}`);
@@ -93,7 +99,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function guardarCambiosEnBD(NombreUsuario, Descripcion, FotoPerfil) {
         if (!NombreUsuario?.trim() || !Descripcion?.trim()) {
-            alert(" Nombre y descripción son obligatorios.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Campos obligatorios',
+                text: 'El nombre y la descripción no pueden estar vacíos.',
+                confirmButtonColor: '#d33'
+            });
             return;
         }
 
@@ -119,41 +130,68 @@ document.addEventListener("DOMContentLoaded", () => {
                 const errorData = await response.json();
                 throw new Error(errorData.error || "Error desconocido al guardar");
             }
-
+            
             localStorage.setItem("perfilNombre", NombreUsuario);
             localStorage.setItem("perfilDescripcion", Descripcion);
             if (FotoPerfil) localStorage.setItem("perfilFoto", FotoPerfil);
-
+            
             nameSpan.textContent = NombreUsuario;
             aboutSpan.textContent = Descripcion;
             if (profilePic) profilePic.style.backgroundImage = `url(${FotoPerfil})`;
-
-            console.log(" Cambios guardados correctamente.");
-            alert(" Los cambios se han guardado correctamente.");
-        } catch (error) {
-            console.error(" Error al guardar en la BD:", error.message);
-            alert(` Error al guardar: ${error.message}`);
-        }
+            
+            console.log("Cambios guardados correctamente.");
+            
+            Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: 'Los cambios se han guardado correctamente.',
+                confirmButtonColor: '#3085d6'
+            });
+            
+            } catch (error) {
+                console.error("Error al guardar en la BD:", error.message);
+            
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al guardar',
+                    text: error.message,
+                    confirmButtonColor: '#d33'
+                });
+            }            
     }
 
-    editButton?.addEventListener("click", () => {
+    editButton?.addEventListener("click", async () => {
         const currentName = nameSpan.textContent;
         const currentAbout = aboutSpan.textContent;
-
-        const newName = prompt("Ingrese su nombre:", currentName);
-        const newAbout = prompt("Ingrese información sobre usted:", currentAbout);
-
-        const fondo = profilePic.style.backgroundImage;
-        const fondoLimpio = fondo.replace(/^url\(["']?/, "").replace(/["']?\)$/, "");
-
-        if (newName?.trim() && newAbout?.trim()) {
-            guardarCambiosEnBD(newName.trim(), newAbout.trim(), fondoLimpio);
-        } else {
-            alert(" Por favor, completa todos los campos correctamente.");
+    
+        const { value: formValues } = await Swal.fire({
+            title: 'Editar perfil',
+            html:
+                `<input id="swal-input1" class="swal2-input" placeholder="Nombre" value="${currentName}">` +
+                `<textarea id="swal-input2" class="swal2-textarea" placeholder="Sobre ti">${currentAbout}</textarea>`,
+            focusConfirm: false,
+            showCancelButton: true,
+            confirmButtonText: 'Guardar',
+            cancelButtonText: 'Cancelar',
+            preConfirm: () => {
+                const nombre = document.getElementById('swal-input1').value.trim();
+                const descripcion = document.getElementById('swal-input2').value.trim();
+                if (!nombre || !descripcion) {
+                    Swal.showValidationMessage('Por favor, completa todos los campos correctamente.');
+                    return false;
+                }
+                return [nombre, descripcion];
+            }
+        });
+    
+        if (formValues) {
+            const [newName, newAbout] = formValues;
+            const fondo = profilePic.style.backgroundImage;
+            const fondoLimpio = fondo.replace(/^url\(["']?/, "").replace(/["']?\)$/, "");
+            guardarCambiosEnBD(newName, newAbout, fondoLimpio);
         }
     });
-
-
+    
     profilePic?.addEventListener("click", () => {
         const fileInput = document.createElement("input");
         fileInput.type = "file";
@@ -278,11 +316,20 @@ function saveContent() {
     let content = document.getElementById("content").value;
 
     if (title.trim() === "" || content.trim() === "") {
-        alert("Por favor, completa todos los campos.");
+        Swal.fire({
+            icon: 'warning',
+            title: 'Campos incompletos',
+            text: 'Por favor, completa todos los campos.'
+        });
         return;
     }
 
-    alert("Contenido guardado: " + title);
+    Swal.fire({
+        icon: 'success',
+        title: 'Contenido guardado',
+        text: `Título: ${title}`
+    });
+
     closeAddContent();
 }
 // Abrir y cerrar el modal de "Agregar Contenido"
@@ -361,19 +408,36 @@ function cambiarImagen(event, imgId) {
 cerrarSesionBtn.addEventListener("click", function () {
     localStorage.clear();
     sessionStorage.clear();
-    alert("Sesión cerrada correctamente");
+
+    Swal.fire({
+        icon: 'success',
+        title: '¡Sesión cerrada!',
+        text: 'Has cerrado sesión correctamente',
+        showConfirmButton: false,
+        timer: 1500
+    });
+
     setTimeout(() => {
         window.location.href = "/index.html";
-    }, 1000); // Redirige después de 1 segundo
+    }, 1500); // Redirige después del tiempo del Swal
 });
+
 
 cerrarSesionBtn2.addEventListener("click", function () {
     localStorage.clear();
     sessionStorage.clear();
-    alert("Sesión cerrada correctamente");
+
+    Swal.fire({
+        icon: 'success',
+        title: '¡Sesión cerrada!',
+        text: 'Has cerrado sesión correctamente',
+        showConfirmButton: false,
+        timer: 1500
+    });
+
     setTimeout(() => {
         window.location.href = "/index.html";
-    }, 1000); // Redirige después de 1 segundo
+    }, 1500); // Redirige después del tiempo del Swal
 });
 
 function showUsers() {
@@ -467,13 +531,28 @@ formLeccion.addEventListener('submit', async function (e) {
         });
 
         if (res.ok) {
-            alert('Curso guardado con éxito 🎉');
+            Swal.fire({
+                icon: 'success',
+                title: '¡Curso guardado!',
+                text: 'El curso y sus lecciones se guardaron con éxito 🎉',
+                showConfirmButton: false,
+                timer: 2000
+            });
         } else {
-            alert('Error al guardar');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ocurrió un error al guardar el curso 😢'
+            });
         }
 
     } catch (error) {
         console.error('Error en la petición:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error de red',
+            text: 'No se pudo conectar con el servidor'
+        });
     }
 });
 

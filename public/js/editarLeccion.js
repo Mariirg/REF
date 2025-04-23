@@ -53,7 +53,6 @@ document.getElementById("actualizarLeccionForm").addEventListener("submit", asyn
     formData.forEach((valor, clave) => {
         console.log(clave, valor);
     });
-    
 
     try {
         const response = await fetch(`/leccion/${formData.get("IdLeccion")}`, {
@@ -62,14 +61,28 @@ document.getElementById("actualizarLeccionForm").addEventListener("submit", asyn
         }); 
         const result = await response.json();
         if (response.ok) {
-            alert("Lección actualizada correctamente");
-            window.location.href = 'indexCursos.html'
+            Swal.fire({
+                title: 'Lección actualizada correctamente',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
+                window.location.href = 'indexCursos.html';
+            });
         } else {
-            alert("Error al actualizar la lección: " + result.error);
+            Swal.fire({
+                title: 'Error al actualizar la lección',
+                text: result.error,
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
         }
     } catch (error) {
         console.error("Error al hacer la solicitud:", error);
-        alert("Hubo un error al actualizar la lección.");
+        Swal.fire({
+            title: 'Hubo un error al actualizar la lección',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
     }
 });
 
@@ -109,7 +122,6 @@ const obtenerDatosLeccion = async () => {
 
 window.onload = obtenerDatosLeccion;
 
-
 function volver() {
-    window.location.href = 'indexCursos.html'
+    window.location.href = 'indexCursos.html';
 }
