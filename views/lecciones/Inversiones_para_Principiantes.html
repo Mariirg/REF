@@ -1,0 +1,118 @@
+
+  
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lección: Inversiones para Principiantes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap"
+    rel="stylesheet" />
+    <link rel="stylesheet" href="/public/css/leccion1.css">
+  <link rel="icon" href="../../public/img/logo22.png" sizes="32x32" type="image/png" />
+</head>
+
+<body>
+
+   <header class="header">
+    <a href="/indexCursos.html" class="logo">REF</a>
+    <nav class="navbar">
+      <a href="/indexCursos.html">Inicio</a>
+      <button id="showProfileBtn">Perfil</button>
+      <a href="/indexAdmin.html" id="adminPanelLink">Panel Admin</a>
+    </nav>
+
+  </header>
+<!-- Fondo oscuro que cubre toda la pantalla -->
+ <div id="overlay"></div>
+
+  <!-- Sección de perfil que aparecerá al hacer clic en el botón -->
+  <div id="perfilSection">
+    <div class="card">
+      <button class="logout-btn" id="cerrarSesion">Cerrar Sesión</button>
+      <div class="profile-pic"></div>
+      <div class="bottom">
+        <div class="content">
+          <span class="name">My Name</span>
+          <span class="about-me">Lorem ipsum dolor sit amet consectetur adipisicinFcls
+          </span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progreso-usuario"></div>
+          </div>
+        </div>
+
+        <div class="bottom-bottom">
+          <button class="button" id="editProfileBtn">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="container">
+      <section class="leccion" id="leccion1">
+     <button class="btn-editar hidden" onclick="editar()">Editar lección</button>
+      <br>
+        <h1 class="titulo">Inversiones para Principiantes</h1>
+        <p>¿Alguna vez has pensado en cómo hacer que tu dinero crezca? Este curso te ayudará a entender las bases de las inversiones, un paso crucial para que tu dinero trabaje por ti.                 </p>
+      </section>
+
+      <section class="contenido-curso">
+        <h2>Introducción al Curso</h2>
+        <p>Invertir es una de las formas más efectivas de hacer crecer tu dinero, pero para muchos jóvenes, el mundo de las inversiones puede parecer complicado y arriesgado. Este curso te brindará una introducción clara y sencilla sobre cómo empezar a invertir con seguridad, sin importar si no tienes experiencia previa. Aprenderás lo básico sobre acciones, bonos, bienes raíces y más, y cómo tomar decisiones informadas para que tu dinero trabaje para ti.
+                        </p>
+
+        <h2 class="subtitulo">¿Qué es?</h2>
+        <p>Las inversiones son una manera de poner tu dinero a trabajar para generar más dinero. En lugar de dejarlo en una cuenta de ahorro sin que crezca, invertirlo en acciones, bonos o proyectos puede ayudarte a obtener ganancias en el tiempo. A diferencia del ahorro, las inversiones tienen un nivel de riesgo, pero también te permiten hacer crecer tu dinero a largo plazo.</p>
+
+      <div class="imagenes-leccion">
+       <figure>
+          <img src="https://res.cloudinary.com/dwcydursu/image/upload/v1745383387/02f42e4f-8ec8-47dc-9310-6684437be5e0.avif" alt="Imagen explicativa 1" />
+          <figcaption>Ilustración introductoria de la lección</figcaption>
+        </figure>
+            <figure>
+          <img src="https://res.cloudinary.com/dwcydursu/image/upload/v1745383388/0bfc6b13-51c5-45c5-bc5f-4c3300da64ec.jpg" alt="Imagen explicativa 1" />
+          <figcaption>Ilustración introductoria de la lección</figcaption>
+        </figure>
+            </div>
+
+        <h3 class="subtitulo">¿Por qué es importante?</h3>
+        <p>Aprender a invertir desde joven te permite aprovechar el poder del tiempo y los intereses compuestos. Comenzar a invertir temprano puede hacer una gran diferencia en tu estabilidad financiera futura. Además, entender las inversiones te da mayor control sobre tu futuro económico, permitiéndote generar riqueza en lugar de depender solo de un salario.
+                        </p>
+
+        <div class="practica">
+          <h2>Práctica recomendada:</h2>
+          <p>1. Crea un mini portafolio: Usa plataformas como simuladores de inversión para crear un portafolio con montos pequeños y ver cómo evoluciona.
+
+2. Desafío de ahorro para invertir: Fija una meta de ahorro mensual específica, como $30 o $50, para luego invertirlos en una opción de bajo riesgo.
+
+3. Investiga una acción de tu interés: Escoge una empresa o sector que te interese y realiza una investigación para ver cómo funcionan las inversiones en ese campo.
+
+4. Sigue una estrategia de inversión de bajo riesgo: Comienza con fondos indexados o ETFs para aprender mientras inviertes con menos riesgo.
+                            </p>
+        </div>
+      </section>
+
+     <!-- Botón Finalizar -->
+      <div class="finalizar-curso">
+        <button type="button" onclick="finalizarCurso()" id="finalizarBtn">Finalizar</button>
+      </div>
+      
+    </div>
+</form>
+
+      <footer>
+        <p>&copy; 2025 Red de Educación Financiera. MyD.</p>
+      </footer>
+   
+  <script src="../../public/js/indexCursos.js"></script>
+  <script src="../../public/js/ocultarPanelAdmin.js"></script>
+  <script src="../../public/js/finalizarLeccion.js"></script>
+    <script src="../../public/js/ocultarEditar.js"></script>
+</body>
+
+</html>
+
+    

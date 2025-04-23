@@ -1,0 +1,115 @@
+
+  
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lección: Educación Financiera para Emprendedores</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap"
+    rel="stylesheet" />
+    <link rel="stylesheet" href="/public/css/leccion1.css">
+  <link rel="icon" href="../../public/img/logo22.png" sizes="32x32" type="image/png" />
+</head>
+
+<body>
+
+   <header class="header">
+    <a href="/indexCursos.html" class="logo">REF</a>
+    <nav class="navbar">
+      <a href="/indexCursos.html">Inicio</a>
+      <button id="showProfileBtn">Perfil</button>
+      <a href="/indexAdmin.html" id="adminPanelLink">Panel Admin</a>
+    </nav>
+
+  </header>
+<!-- Fondo oscuro que cubre toda la pantalla -->
+ <div id="overlay"></div>
+
+  <!-- Sección de perfil que aparecerá al hacer clic en el botón -->
+  <div id="perfilSection">
+    <div class="card">
+      <button class="logout-btn" id="cerrarSesion">Cerrar Sesión</button>
+      <div class="profile-pic"></div>
+      <div class="bottom">
+        <div class="content">
+          <span class="name">My Name</span>
+          <span class="about-me">Lorem ipsum dolor sit amet consectetur adipisicinFcls
+          </span>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progreso-usuario"></div>
+          </div>
+        </div>
+
+        <div class="bottom-bottom">
+          <button class="button" id="editProfileBtn">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="container">
+      <section class="leccion" id="leccion1">
+     <button class="btn-editar hidden" onclick="editar()">Editar lección</button>
+      <br>
+        <h1 class="titulo">Educación Financiera para Emprendedores</h1>
+        <p>Si estás pensando en emprender, saber cómo manejar las finanzas de tu negocio es crucial. Este curso te proporcionará las herramientas necesarias para gestionar el dinero de tu emprendimiento y tomar decisiones inteligentes que ayuden a tu negocio a prosperar.</p>
+      </section>
+
+      <section class="contenido-curso">
+        <h2>Introducción al Curso</h2>
+        <p>Este curso está diseñado para jóvenes emprendedores que quieren iniciar su propio negocio pero no saben por dónde comenzar con la parte financiera. Aquí aprenderás cómo gestionar el dinero de tu emprendimiento, cómo hacer presupuestos, controlar los gastos y utilizar los recursos de manera eficiente para hacer crecer tu empresa.</p>
+
+        <h2 class="subtitulo">¿Qué es?</h2>
+        <p>Este curso está diseñado para jóvenes emprendedores que quieren iniciar su propio negocio pero no saben por dónde comenzar con la parte financiera. Aquí aprenderás cómo gestionar el dinero de tu emprendimiento, cómo hacer presupuestos, controlar los gastos y utilizar los recursos de manera eficiente para hacer crecer tu empresa.</p>
+
+      <div class="imagenes-leccion">
+       <figure>
+          <img src="https://res.cloudinary.com/dwcydursu/image/upload/v1745383856/22832bcc-9461-4e62-adcc-e4acc2439d60.png" alt="Imagen explicativa 1" />
+          <figcaption>Ilustración introductoria de la lección</figcaption>
+        </figure>
+            <figure>
+          <img src="https://res.cloudinary.com/dwcydursu/image/upload/v1745383857/dd50bf7f-fa11-4aa7-a629-b670543daedb.jpg" alt="Imagen explicativa 1" />
+          <figcaption>Ilustración introductoria de la lección</figcaption>
+        </figure>
+            </div>
+
+        <h3 class="subtitulo">¿Por qué es importante?</h3>
+        <p>Las finanzas son la columna vertebral de cualquier negocio. Un mal manejo financiero puede llevar a la quiebra, mientras que una buena gestión puede llevar a tu emprendimiento al éxito. Aprender a manejar las finanzas de tu negocio te permitirá tomar decisiones informadas y asegurar la estabilidad y el crecimiento de tu empresa.</p>
+
+        <div class="practica">
+          <h2>Práctica recomendada:</h2>
+          <p>1. Simulación de flujo de caja: Usa una hoja de cálculo para simular los ingresos y egresos de tu negocio, y asegúrate de que siempre haya un balance positivo.
+
+2. Desafío del presupuesto empresarial: Crea un presupuesto para tu emprendimiento, incluyendo los costos fijos y variables. Luego, evalúa si es posible reducir alguno de estos gastos.
+
+3. Reto de financiamiento: Investiga al menos tres maneras de conseguir financiamiento para tu negocio, ya sea con inversionistas, préstamos o crowdfunding.
+
+4. Plan de ahorro para emergencias empresariales: Crea un fondo de emergencia para tu emprendimiento que cubra al menos tres meses de gastos operativos.</p>
+        </div>
+      </section>
+
+     <!-- Botón Finalizar -->
+      <div class="finalizar-curso">
+        <button type="button" onclick="finalizarCurso()" id="finalizarBtn">Finalizar</button>
+      </div>
+      
+    </div>
+</form>
+
+      <footer>
+        <p>&copy; 2025 Red de Educación Financiera. MyD.</p>
+      </footer>
+   
+  <script src="../../public/js/indexCursos.js"></script>
+  <script src="../../public/js/ocultarPanelAdmin.js"></script>
+  <script src="../../public/js/finalizarLeccion.js"></script>
+    <script src="../../public/js/ocultarEditar.js"></script>
+</body>
+
+</html>
+
+    
